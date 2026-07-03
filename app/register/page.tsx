@@ -30,7 +30,33 @@ export default function RegisterPage() {
     }, 2000);
   }
 
-  async function handleSubmit(
+  async function uploadImage(file: File) {
+
+    const formData = new FormData();
+
+    formData.append("file", file);
+    formData.append("upload_preset", "my_upload");
+
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/f3v2d7s6/image/upload",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+
+    const data = await res.json();
+
+    console.log(data);
+
+if (!data.secure_url) {
+  throw new Error(
+    data.error?.message || "فشل رفع الصورة"
+  );
+}
+
+return data.secure_url;
+  }  async function handleSubmit(
     nameInput: string,
     playerId: string,
     image: File | null
@@ -38,8 +64,8 @@ export default function RegisterPage() {
     try {
       setLoading(true);
 
-      if (!nameInput || !playerId) {
-        showToast("⚠️ املأ جميع الحقول");
+      if (!nameInput || !playerId || !image) {
+        showToast("⚠️ املأ جميع الحقول وارفع صورة");
         setLoading(false);
         return;
       }
@@ -57,10 +83,14 @@ export default function RegisterPage() {
         return;
       }
 
+      // رفع الصورة إلى Cloudinary
+      const imageUrl = await uploadImage(image);
+
+      // حفظ البيانات في Firestore
       await addDoc(collection(db, "participants"), {
         name: nameInput,
         playerId,
-        imageUrl: "",
+        imageUrl,
         createdAt: new Date(),
       });
 
@@ -69,19 +99,21 @@ export default function RegisterPage() {
 
       showToast("🎉 تم التسجيل بنجاح");
 
-    } catch (err) {
-      showToast("❌ حدث خطأ");
+    } catch (error) {
+      console.error(error);
+      showToast("❌ حدث خطأ أثناء التسجيل");
     }
 
     setLoading(false);
-  }
-
-  return (
+  }  return (
     <main className="min-h-screen bg-[#0B1120] text-white">
 
       <Head>
         <title>TITANS ALLIANCE | التسجيل</title>
-        <meta name="description" content="سجل الآن في بطولة Titans Alliance" />
+        <meta
+          name="description"
+          content="سجل الآن في بطولة Titans Alliance"
+        />
         <link rel="icon" href="/logo.jpg" />
       </Head>
 

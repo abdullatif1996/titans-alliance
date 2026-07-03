@@ -100,10 +100,16 @@ export default function ParticipantsTable({
 
                     {player.imageUrl ? (
 
-                      <img
-                        src={player.imageUrl}
-                        className="w-12 h-12 rounded-xl object-cover mx-auto border border-yellow-400"
-                      />
+                      <a
+  href={player.imageUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <img
+    src={player.imageUrl}
+    className="w-16 h-16 rounded-xl object-cover mx-auto border border-yellow-400 hover:scale-110 transition cursor-pointer"
+  />
+</a>
 
                     ) : (
 
