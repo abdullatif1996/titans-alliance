@@ -19,6 +19,10 @@ import Toast from "./components/Toast";
 
 export default function AdminPage() {
 
+  // 🔐 login
+  const [password, setPassword] = useState("");
+  const [access, setAccess] = useState(false);
+
   const [participants, setParticipants] = useState<any[]>([]);
   const [search, setSearch] = useState("");
 
@@ -32,14 +36,10 @@ export default function AdminPage() {
     text: "",
   });
 
-  const [lastUpdate, setLastUpdate] =
-    useState("");
+  const [lastUpdate, setLastUpdate] = useState("");
 
   async function loadData() {
-
-    const snapshot = await getDocs(
-      collection(db, "participants")
-    );
+    const snapshot = await getDocs(collection(db, "participants"));
 
     const data = snapshot.docs.map((item) => ({
       id: item.id,
@@ -54,177 +54,167 @@ export default function AdminPage() {
 
     setParticipants(data);
 
-    setLastUpdate(
-      new Date().toLocaleTimeString("ar-SA")
-    );
-
+    setLastUpdate(new Date().toLocaleTimeString("ar-SA"));
   }
 
   useEffect(() => {
+    if (access) loadData();
+  }, [access]);
 
-    loadData();
+  function showToast(text: string) {
+    setToast({ open: true, text });
 
-  }, []);
+    setTimeout(() => {
+      setToast({ open: false, text: "" });
+    }, 2000);
+  }
 
   async function deleteParticipant(id: string) {
-
-    await deleteDoc(
-      doc(db, "participants", id)
-    );
-
+    await deleteDoc(doc(db, "participants", id));
     showToast("🗑️ تم حذف المشارك");
-
     loadData();
-
   }
 
   async function deleteAllConfirmed() {
-
-    for (const player of participants) {
-
-      await deleteDoc(
-        doc(db, "participants", player.id)
-      );
-
+    for (const p of participants) {
+      await deleteDoc(doc(db, "participants", p.id));
     }
 
     setDeleteOpen(false);
-
-    showToast("🗑️ تم حذف جميع المشاركين");
-
+    showToast("🗑️ تم حذف الجميع");
     loadData();
-
   }
 
-  async function copyId(id: string) {
-
-    await navigator.clipboard.writeText(id);
-
+  function copyId(id: string) {
+    navigator.clipboard.writeText(id);
     showToast("📋 تم نسخ الـ ID");
-
-  }
-
-  function showToast(text: string) {
-
-    setToast({
-      open: true,
-      text,
-    });
-
-    setTimeout(() => {
-
-      setToast({
-        open: false,
-        text: "",
-      });
-
-    }, 2000);
-
   }
 
   function pickWinner() {
-
     if (participants.length === 0) {
-
-      showToast("⚠️ لا يوجد مشاركون");
-
+      showToast("⚠️ لا يوجد مشاركين");
       return;
-
     }
 
-    const random =
-      participants[
-        Math.floor(
-          Math.random() *
-          participants.length
-        )
-      ];
+    const winner =
+      participants[Math.floor(Math.random() * participants.length)];
 
-    setWinner(random);
-
+    setWinner(winner);
     setWinnerOpen(true);
-
   }
 
-  const filtered =participants.filter(
-  (player) =>
-    player.name
-      ?.toLowerCase()
-      .includes(search.toLowerCase()) ||
-    player.playerId
-      ?.toString()
-      .includes(search)
-);
+  const filtered = participants.filter(
+    (p) =>
+      p.name?.toLowerCase().includes(search.toLowerCase()) ||
+      p.playerId?.toString().includes(search)
+  );
 
-return (
-  <main className="min-h-screen bg-[#0B1120] text-white">
+  // 🔐 شاشة الدخول
+  if (!access) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#0B1120] text-white">
 
-    <div className="max-w-7xl mx-auto p-6">
+        <div className="bg-[#111827] p-8 rounded-2xl border border-yellow-400 w-[350px]">
 
-      <Header
-        onRefresh={loadData}
-        onLogout={() => {
-          localStorage.removeItem("admin");
-          location.href = "/login";
-        }}
-        onPickWinner={pickWinner}
-      />
+          <h1 className="text-2xl font-bold mb-6 text-center">
+            🔐 دخول الأدمن
+          </h1>
 
-      <StatsCards
-        participants={participants.length}
-        results={filtered.length}
-        lastUpdate={lastUpdate}
-      />
+          <input
+            type="password"
+            placeholder="أدخل كلمة المرور"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full p-3 rounded-lg bg-black border border-slate-600 mb-4"
+          />
 
-      <SearchBar
-        search={search}
-        setSearch={setSearch}
-      />
+          <button
+            onClick={() => {
+              if (password === "Titans2025") {
+                setAccess(true);
+              } else {
+                alert("كلمة المرور خطأ ❌");
+              }
+            }}
+            className="w-full bg-yellow-400 text-black font-bold py-3 rounded-lg hover:bg-yellow-500"
+          >
+            دخول
+          </button>
 
-      <div className="flex flex-wrap gap-3 mb-6">
+        </div>
 
-        <button
-          onClick={() => setDeleteOpen(true)}
-          className="bg-red-600 hover:bg-red-700 px-5 py-3 rounded-xl font-bold transition"
-        >
-          🗑️ حذف الكل
-        </button>
+      </div>
+    );
+  }
 
-        <button
-          onClick={loadData}
-          className="bg-blue-600 hover:bg-blue-700 px-5 py-3 rounded-xl font-bold transition"
-        >
-          🔄 تحديث
-        </button>
+  return (
+    <main className="min-h-screen bg-[#0B1120] text-white">
+
+      <div className="max-w-7xl mx-auto p-6">
+
+        <Header
+          onRefresh={loadData}
+          onLogout={() => {
+            setAccess(false);
+          }}
+          onPickWinner={pickWinner}
+        />
+
+        <StatsCards
+          participants={participants.length}
+          results={filtered.length}
+          lastUpdate={lastUpdate}
+        />
+
+        <SearchBar
+          search={search}
+          setSearch={setSearch}
+        />
+
+        <div className="flex flex-wrap gap-3 mb-6">
+
+          <button
+            onClick={() => setDeleteOpen(true)}
+            className="bg-red-600 hover:bg-red-700 px-5 py-3 rounded-xl font-bold"
+          >
+            🗑️ حذف الكل
+          </button>
+
+          <button
+            onClick={loadData}
+            className="bg-blue-600 hover:bg-blue-700 px-5 py-3 rounded-xl font-bold"
+          >
+            🔄 تحديث
+          </button>
+
+        </div>
+
+        <ParticipantsTable
+          participants={filtered}
+          onDelete={deleteParticipant}
+          onCopyId={copyId}
+        />
+
+        <WinnerModal
+          open={winnerOpen}
+          winner={winner}
+          onClose={() => setWinnerOpen(false)}
+        />
+
+        <DeleteAllModal
+          open={deleteOpen}
+          count={participants.length}
+          onCancel={() => setDeleteOpen(false)}
+          onConfirm={deleteAllConfirmed}
+        />
+
+        <Toast
+          open={toast.open}
+          text={toast.text}
+        />
 
       </div>
 
-      <ParticipantsTable
-        participants={filtered}
-        onDelete={deleteParticipant}
-        onCopyId={copyId}
-      />
-
-      <WinnerModal
-        open={winnerOpen}
-        winner={winner}
-        onClose={() => setWinnerOpen(false)}
-      />
-
-      <DeleteAllModal
-        open={deleteOpen}
-        count={participants.length}
-        onCancel={() => setDeleteOpen(false)}
-        onConfirm={deleteAllConfirmed}
-      />
-
-      <Toast
-        open={toast.open}
-        text={toast.text}
-      />
-
-    </div>
-
-  </main>
-);
+    </main>
+  );
 }
