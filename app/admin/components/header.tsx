@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 type HeaderProps = {
   onRefresh: () => void;
@@ -71,6 +72,13 @@ export default function Header({
           >
             🎲 اختيار فائز
           </button>
+
+          <Link
+            href="/admin/deleted"
+            className="bg-purple-600 hover:bg-purple-700 transition px-5 py-3 rounded-xl font-bold"
+          >
+            🗑️ المحذوفات
+          </Link>
 
           <button
             onClick={onLogout}
