@@ -9,6 +9,8 @@ import {
   doc,
   addDoc,
   updateDoc,
+  getDoc,
+  setDoc,
 } from "firebase/firestore";
 
 import Header from "./components/header";
@@ -28,6 +30,7 @@ export default function AdminPage() {
   const [participants, setParticipants] = useState<any[]>([]);
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("all");
+  const [registrationOpen, setRegistrationOpen] = useState(true);
 
   const [winnerOpen, setWinnerOpen] = useState(false);
   const [winner, setWinner] = useState<any>(null);
@@ -61,8 +64,11 @@ export default function AdminPage() {
   }
 
   useEffect(() => {
-    if (access) loadData();
-  }, [access]);
+  if (access) {
+    loadData();
+    loadRegistrationStatus();
+  }
+}, [access]);
 
   function showToast(text: string) {
     setToast({ open: true, text });
@@ -125,6 +131,40 @@ async function toggleCopied(player: any) {
   );
 
   loadData();
+}
+
+async function loadRegistrationStatus() {
+
+  const snap = await getDoc(
+    doc(db, "settings", "contest")
+  );
+
+  if (snap.exists()) {
+    setRegistrationOpen(
+      snap.data().registrationOpen
+    );
+  } else {
+    await setDoc(
+      doc(db, "settings", "contest"),
+      {
+        registrationOpen: true,
+      }
+    );
+
+    setRegistrationOpen(true);
+  }
+}
+
+async function toggleRegistration() {
+
+  await setDoc(
+    doc(db, "settings", "contest"),
+    {
+      registrationOpen: !registrationOpen,
+    }
+  );
+
+  setRegistrationOpen(!registrationOpen);
 }
 
   function pickWinner() {
@@ -256,21 +296,34 @@ async function toggleCopied(player: any) {
 </div>
         <div className="flex flex-wrap gap-3 mb-6">
 
-          <button
-            onClick={() => setDeleteOpen(true)}
-            className="bg-red-600 hover:bg-red-700 px-5 py-3 rounded-xl font-bold"
-          >
-            🗑️ حذف الكل
-          </button>
+  <button
+    onClick={toggleRegistration}
+    className={`px-5 py-3 rounded-xl font-bold ${
+      registrationOpen
+        ? "bg-red-600 hover:bg-red-700"
+        : "bg-green-600 hover:bg-green-700"
+    }`}
+  >
+    {registrationOpen
+      ? "🔒 إغلاق التسجيل"
+      : "🔓 فتح التسجيل"}
+  </button>
 
-          <button
-            onClick={loadData}
-            className="bg-blue-600 hover:bg-blue-700 px-5 py-3 rounded-xl font-bold"
-          >
-            🔄 تحديث
-          </button>
+  <button
+    onClick={() => setDeleteOpen(true)}
+    className="bg-red-600 hover:bg-red-700 px-5 py-3 rounded-xl font-bold"
+  >
+    🗑️ حذف الكل
+  </button>
 
-        </div>
+  <button
+    onClick={loadData}
+    className="bg-blue-600 hover:bg-blue-700 px-5 py-3 rounded-xl font-bold"
+  >
+    🔄 تحديث
+  </button>
+
+</div>
 
         <ParticipantsTable
   participants={filtered}

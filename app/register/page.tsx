@@ -1,9 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import { db } from "../firebase";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  getDoc,
+  doc,
+} from "firebase/firestore";
 
 import Header from "./components/Header";
 import RegisterForm from "./components/RegisterForm";
@@ -16,19 +22,40 @@ export default function RegisterPage() {
   const [loading, setLoading] = useState(false);
   const [successOpen, setSuccessOpen] = useState(false);
   const [name, setName] = useState("");
+  const [registrationOpen, setRegistrationOpen] = useState(true);
+const [checking, setChecking] = useState(true);
 
   const [toast, setToast] = useState({
     open: false,
     text: "",
   });
 
-  async function showToast(text: string) {
-    setToast({ open: true, text });
+  useEffect(() => {
+  async function checkRegistration() {
 
-    setTimeout(() => {
-      setToast({ open: false, text: "" });
-    }, 2000);
+    const snap = await getDoc(
+      doc(db, "settings", "contest")
+    );
+
+    if (snap.exists()) {
+      setRegistrationOpen(
+        snap.data().registrationOpen
+      );
+    }
+
+    setChecking(false);
   }
+
+  checkRegistration();
+}, []);
+
+async function showToast(text: string) {
+  setToast({ open: true, text });
+
+  setTimeout(() => {
+    setToast({ open: false, text: "" });
+  }, 2000);
+}
 
   async function uploadImage(file: File) {
 
@@ -62,6 +89,11 @@ return data.secure_url;
     image: File | null
   ) {
     try {
+      if (!registrationOpen) {
+  showToast("🚫 التسجيل مغلق");
+  setLoading(false);
+  return;
+}
       setLoading(true);
 
       if (!nameInput || !playerId || !image) {
@@ -120,11 +152,18 @@ return data.secure_url;
       <div className="max-w-5xl mx-auto p-6">
 
         <Header />
-
-        <RegisterForm
-          onSubmit={handleSubmit}
-          loading={loading}
-        />
+{checking ? (
+  <Loading />
+) : !registrationOpen ? (
+  <div className="bg-red-600 rounded-2xl p-8 text-center text-2xl font-bold">
+    🚫 انتهى التسجيل في المسابقة
+  </div>
+) : (
+  <RegisterForm
+  onSubmit={handleSubmit}
+  loading={loading}
+/>)}
+      
 
         {loading && <Loading />}
 
