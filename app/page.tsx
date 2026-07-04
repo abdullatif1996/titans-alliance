@@ -99,13 +99,13 @@ export default function Home() {
 >
   🚀 شارك الآن / Register Now
 </Link>
-<div className="flex items-center justify-center gap-6 mt-8">
+<div className="relative z-50 flex items-center justify-center gap-6 mt-8">
 
   <a
   href="https://www.tiktok.com/@serve1479r?_r=1&_t=ZS-97lAF5LLhlx"
   target="_blank"
   rel="noopener noreferrer"
-  className="flex items-center gap-2 bg-[#111827] text-white border border-pink-500 hover:bg-pink-500 hover:border-pink-400 px-6 py-3 rounded-xl transition shadow-lg"
+  className="relative z-50 inline-flex items-center gap-2 bg-[#111827] text-white border border-pink-500 hover:bg-pink-500 hover:border-pink-400 px-6 py-3 rounded-xl transition shadow-lg"
 >
   <FaTiktok size={24} className="text-pink-400" />
   <span className="font-semibold">TikTok</span>
@@ -114,7 +114,7 @@ export default function Home() {
   href="https://discord.gg/tFfgNhU4M"
   target="_blank"
   rel="noopener noreferrer"
-  className="flex items-center gap-2 bg-[#111827] text-white border border-indigo-500 hover:bg-indigo-500 hover:border-indigo-400 px-6 py-3 rounded-xl transition shadow-lg"
+  className="relative z-50 inline-flex items-center gap-2 bg-[#111827] text-white border border-indigo-500 hover:bg-indigo-500 hover:border-indigo-400 px-6 py-3 rounded-xl transition shadow-lg"
 >
   <FaDiscord size={24} className="text-indigo-400" />
   <span className="font-semibold">Discord</span>
