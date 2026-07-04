@@ -8,6 +8,7 @@ import {
   deleteDoc,
   doc,
   addDoc,
+  updateDoc,
 } from "firebase/firestore";
 
 import Header from "./components/header";
@@ -97,10 +98,33 @@ export default function AdminPage() {
     loadData();
   }
 
-  function copyId(id: string) {
-    navigator.clipboard.writeText(id);
-    showToast("📋 تم نسخ الـ ID");
-  }
+  async function copyId(player: any) {
+
+  navigator.clipboard.writeText(player.playerId);
+
+  await updateDoc(
+    doc(db, "participants", player.id),
+    {
+      copied: true,
+    }
+  );
+
+  showToast("📋 تم نسخ الـ ID");
+
+  loadData();
+}
+
+async function toggleCopied(player: any) {
+
+  await updateDoc(
+    doc(db, "participants", player.id),
+    {
+      copied: !player.copied,
+    }
+  );
+
+  loadData();
+}
 
   function pickWinner() {
     if (participants.length === 0) {
@@ -202,10 +226,11 @@ export default function AdminPage() {
         </div>
 
         <ParticipantsTable
-          participants={filtered}
-          onDelete={deleteParticipant}
-          onCopyId={copyId}
-        />
+  participants={filtered}
+  onDelete={deleteParticipant}
+  onCopyId={(player) => copyId(player)}
+  onToggleCopied={(player) => toggleCopied(player)}
+/>
 
         <WinnerModal
           open={winnerOpen}

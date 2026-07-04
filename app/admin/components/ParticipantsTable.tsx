@@ -3,13 +3,15 @@
 type ParticipantsTableProps = {
   participants: any[];
   onDelete: (id: string) => void;
-  onCopyId: (id: string) => void;
+  onCopyId: (player: any) => void;
+  onToggleCopied: (player: any) => void;
 };
 
 export default function ParticipantsTable({
   participants,
   onDelete,
   onCopyId,
+  onToggleCopied,
 }: ParticipantsTableProps) {
   return (
     <div className="bg-[#111827] border border-slate-700 rounded-3xl overflow-hidden shadow-2xl">
@@ -80,43 +82,53 @@ export default function ParticipantsTable({
 
                     <div>
 
-                      <h3 className="font-bold text-white">
-                        {player.name}
-                      </h3>
+  <div className="flex items-center gap-2">
 
-                      <p className="text-xs text-gray-500 mt-1">
-                        لاعب
-                      </p>
+    <h3 className="font-bold text-white">
+      {player.name}
+    </h3>
 
-                    </div>
+    {player.copied && (
+      <button
+        onClick={() => onToggleCopied(player)}
+        className="text-green-400 hover:scale-125 transition"
+        title="إلغاء علامة التسليم"
+      >
+        ✅
+      </button>
+    )}
+
+  </div>
+
+  <p className="text-xs text-gray-500 mt-1">
+    لاعب
+  </p>
+
+</div>
 
                   </td>
 
                   <td className="text-center font-mono text-gray-300">
                     {player.playerId}
-                  </td>
-
-                  <td className="text-center">
+                  </td>                  <td className="text-center">
 
                     {player.imageUrl ? (
 
                       <a
-  href={player.imageUrl}
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <img
-    src={player.imageUrl}
-    className="w-16 h-16 rounded-xl object-cover mx-auto border border-yellow-400 hover:scale-110 transition cursor-pointer"
-  />
-</a>
+                        href={player.imageUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <img
+                          src={player.imageUrl}
+                          className="w-16 h-16 rounded-xl object-cover mx-auto border border-yellow-400 hover:scale-110 transition cursor-pointer"
+                        />
+                      </a>
 
                     ) : (
 
                       <div className="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center mx-auto">
-
                         📷
-
                       </div>
 
                     )}
@@ -126,9 +138,7 @@ export default function ParticipantsTable({
                   <td className="text-center">
 
                     <button
-                      onClick={() =>
-                        onCopyId(player.playerId)
-                      }
+                      onClick={() => onCopyId(player)}
                       className="bg-blue-600 hover:bg-blue-700 px-3 py-2 rounded-lg transition"
                     >
                       📋
@@ -139,9 +149,7 @@ export default function ParticipantsTable({
                   <td className="text-center">
 
                     <button
-                      onClick={() =>
-                        onDelete(player.id)
-                      }
+                      onClick={() => onDelete(player.id)}
                       className="bg-red-600 hover:bg-red-700 px-3 py-2 rounded-lg transition"
                     >
                       🗑️
