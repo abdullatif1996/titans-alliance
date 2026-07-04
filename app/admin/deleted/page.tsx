@@ -19,10 +19,10 @@ export default function DeletedPage() {
       collection(db, "deletedParticipants")
     );
 
-    const data = snapshot.docs.map((docItem) => ({
-      id: docItem.id,
-      ...docItem.data(),
-    }));
+  const data = snapshot.docs.map((docItem) => ({
+  ...docItem.data(),
+  id: docItem.id,
+}));
 
     setPlayers(data);
   }
@@ -55,21 +55,30 @@ export default function DeletedPage() {
   }
 
   async function deleteAllPlayers() {
+  const ok = confirm("هل أنت متأكد من حذف جميع المحذوفات نهائياً؟");
 
-    const ok = confirm(
-      "هل أنت متأكد من حذف جميع المحذوفات نهائياً؟"
-    );
+  if (!ok) return;
 
-    if (!ok) return;
+  try {
+    console.log("Players:", players);
 
     for (const player of players) {
+      console.log("Deleting:", player.id);
+
       await deleteDoc(
         doc(db, "deletedParticipants", player.id)
       );
     }
 
+    alert("تم حذف الجميع ✅");
+
     loadData();
+
+  } catch (error) {
+    console.error(error);
+    alert("حدث خطأ، افتح Console");
   }
+}
 
   return (
     <main className="min-h-screen bg-[#0B1120] text-white p-8">
