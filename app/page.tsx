@@ -79,7 +79,7 @@ export default function Home() {
 
 <div className="relative mt-12 flex justify-center w-full animate-fade-up">
 
-  <div className="absolute -inset-3 bg-yellow-400/20 blur-3xl rounded-3xl"></div>
+  <div className="absolute -inset-3 bg-yellow-400/20 blur-3xl pointer-events-none"></div>
 
   <Image
     src="/contest.jpg"
@@ -95,7 +95,7 @@ export default function Home() {
 
 <Link
   href="/register"
-  className="animate-fade-up mt-10 bg-yellow-400 hover:bg-yellow-500 text-black px-14 py-5 rounded-2xl font-black text-xl transition hover:scale-105 shadow-[0_0_30px_rgba(250,204,21,0.4)]"
+  className="relative z-50 mt-10 inline-flex items-center justify-center bg-yellow-400 hover:bg-yellow-500 text-black px-14 py-5 rounded-2xl font-black text-xl transition hover:scale-105 shadow-[0_0_30px_rgba(250,204,21,0.4)]"
 >
   🚀 شارك الآن / Register Now
 </Link>
