@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { db } from "../../firebase";
 import {
   collection,
@@ -11,11 +12,9 @@ import {
 } from "firebase/firestore";
 
 export default function DeletedPage() {
-
   const [players, setPlayers] = useState<any[]>([]);
 
   async function loadData() {
-
     const snapshot = await getDocs(
       collection(db, "deletedParticipants")
     );
@@ -30,8 +29,9 @@ export default function DeletedPage() {
 
   useEffect(() => {
     loadData();
-  }, []);  async function restorePlayer(player: any) {
+  }, []);
 
+  async function restorePlayer(player: any) {
     await addDoc(collection(db, "participants"), {
       name: player.name,
       playerId: player.playerId,
@@ -47,7 +47,6 @@ export default function DeletedPage() {
   }
 
   async function deleteForever(id: string) {
-
     await deleteDoc(
       doc(db, "deletedParticipants", id)
     );
@@ -58,14 +57,25 @@ export default function DeletedPage() {
   return (
     <main className="min-h-screen bg-[#0B1120] text-white p-8">
 
-      <h1 className="text-4xl font-black text-yellow-400 mb-8">
-        🗑️ المحذوفات
-      </h1>
+      <div className="flex items-center justify-between mb-8">
+
+        <h1 className="text-4xl font-black text-yellow-400">
+          🗑️ المحذوفات
+        </h1>
+
+        <Link
+          href="/admin"
+          className="bg-blue-600 hover:bg-blue-700 px-5 py-3 rounded-xl font-bold"
+        >
+          🏠 الرجوع للإدارة
+        </Link>
+
+      </div>
 
       <div className="space-y-4">        {players.length === 0 ? (
 
-          <div className="text-center text-gray-400 text-xl">
-            لا يوجد محذوفات
+          <div className="text-center text-gray-400 text-xl py-16">
+            لا يوجد مشاركون في المحذوفات
           </div>
 
         ) : (
@@ -79,10 +89,21 @@ export default function DeletedPage() {
 
               <div className="flex items-center gap-4">
 
-                <img
-                  src={player.imageUrl}
-                  className="w-20 h-20 rounded-xl object-cover border border-yellow-400"
-                />
+                {player.imageUrl ? (
+
+                  <img
+                    src={player.imageUrl}
+                    alt={player.name}
+                    className="w-20 h-20 rounded-xl object-cover border border-yellow-400"
+                  />
+
+                ) : (
+
+                  <div className="w-20 h-20 rounded-xl bg-slate-800 flex items-center justify-center">
+                    📷
+                  </div>
+
+                )}
 
                 <div>
 
@@ -102,14 +123,14 @@ export default function DeletedPage() {
 
                 <button
                   onClick={() => restorePlayer(player)}
-                  className="bg-green-600 hover:bg-green-700 px-5 py-3 rounded-xl font-bold"
+                  className="bg-green-600 hover:bg-green-700 px-5 py-3 rounded-xl font-bold transition"
                 >
                   ♻️ استرجاع
                 </button>
 
                 <button
                   onClick={() => deleteForever(player.id)}
-                  className="bg-red-600 hover:bg-red-700 px-5 py-3 rounded-xl font-bold"
+                  className="bg-red-600 hover:bg-red-700 px-5 py-3 rounded-xl font-bold transition"
                 >
                   🗑️ حذف نهائي
                 </button>
