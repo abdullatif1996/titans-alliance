@@ -54,6 +54,23 @@ export default function DeletedPage() {
     loadData();
   }
 
+  async function deleteAllPlayers() {
+
+    const ok = confirm(
+      "هل أنت متأكد من حذف جميع المحذوفات نهائياً؟"
+    );
+
+    if (!ok) return;
+
+    for (const player of players) {
+      await deleteDoc(
+        doc(db, "deletedParticipants", player.id)
+      );
+    }
+
+    loadData();
+  }
+
   return (
     <main className="min-h-screen bg-[#0B1120] text-white p-8">
 
@@ -63,12 +80,23 @@ export default function DeletedPage() {
           🗑️ المحذوفات
         </h1>
 
-        <Link
-          href="/admin"
-          className="bg-blue-600 hover:bg-blue-700 px-5 py-3 rounded-xl font-bold"
-        >
-          🏠 الرجوع للإدارة
-        </Link>
+        <div className="flex gap-3">
+
+          <button
+            onClick={deleteAllPlayers}
+            className="bg-red-700 hover:bg-red-800 px-5 py-3 rounded-xl font-bold"
+          >
+            🗑️ حذف جميع المحذوفات
+          </button>
+
+          <Link
+            href="/admin"
+            className="bg-blue-600 hover:bg-blue-700 px-5 py-3 rounded-xl font-bold"
+          >
+            🏠 الرجوع للإدارة
+          </Link>
+
+        </div>
 
       </div>
 
