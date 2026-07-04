@@ -27,6 +27,7 @@ export default function AdminPage() {
 
   const [participants, setParticipants] = useState<any[]>([]);
   const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState("all");
 
   const [winnerOpen, setWinnerOpen] = useState(false);
   const [winner, setWinner] = useState<any>(null);
@@ -139,11 +140,22 @@ async function toggleCopied(player: any) {
     setWinnerOpen(true);
   }
 
-  const filtered = participants.filter(
-    (p) =>
-      p.name?.toLowerCase().includes(search.toLowerCase()) ||
-      p.playerId?.toString().includes(search)
-  );
+  const filtered = participants.filter((p) => {
+
+  const matchesSearch =
+    p.name?.toLowerCase().includes(search.toLowerCase()) ||
+    p.playerId?.toString().includes(search);
+
+  if (filter === "copied") {
+    return matchesSearch && p.copied;
+  }
+
+  if (filter === "pending") {
+    return matchesSearch && !p.copied;
+  }
+
+  return matchesSearch;
+});
 
   // 🔐 شاشة الدخول
   if (!access) {
@@ -206,7 +218,42 @@ async function toggleCopied(player: any) {
           search={search}
           setSearch={setSearch}
         />
+<div className="flex flex-wrap gap-3 mb-6">
 
+  <button
+    onClick={() => setFilter("all")}
+    className={`px-5 py-3 rounded-xl font-bold ${
+      filter === "all"
+        ? "bg-yellow-400 text-black"
+        : "bg-slate-700"
+    }`}
+  >
+    📋 الكل
+  </button>
+
+  <button
+    onClick={() => setFilter("pending")}
+    className={`px-5 py-3 rounded-xl font-bold ${
+      filter === "pending"
+        ? "bg-orange-500"
+        : "bg-slate-700"
+    }`}
+  >
+    ⏳ غير المشحونين
+  </button>
+
+  <button
+    onClick={() => setFilter("copied")}
+    className={`px-5 py-3 rounded-xl font-bold ${
+      filter === "copied"
+        ? "bg-green-600"
+        : "bg-slate-700"
+    }`}
+  >
+    ✅ تم الشحن
+  </button>
+
+</div>
         <div className="flex flex-wrap gap-3 mb-6">
 
           <button
