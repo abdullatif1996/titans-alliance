@@ -7,6 +7,7 @@ import {
   getDocs,
   deleteDoc,
   doc,
+  addDoc,
 } from "firebase/firestore";
 
 import Header from "./components/header";
@@ -70,10 +71,21 @@ export default function AdminPage() {
   }
 
   async function deleteParticipant(id: string) {
-    await deleteDoc(doc(db, "participants", id));
-    showToast("🗑️ تم حذف المشارك");
-    loadData();
-  }
+  const player = participants.find((p) => p.id === id);
+
+  if (!player) return;
+
+  await addDoc(collection(db, "deletedParticipants"), {
+    ...player,
+    deletedAt: new Date(),
+  });
+
+  await deleteDoc(doc(db, "participants", id));
+
+  showToast("🗑️ تم نقل المشارك إلى المحذوفات");
+
+  loadData();
+}
 
   async function deleteAllConfirmed() {
     for (const p of participants) {
