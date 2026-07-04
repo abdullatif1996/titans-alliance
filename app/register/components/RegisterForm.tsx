@@ -29,14 +29,14 @@ export default function RegisterForm({
         <div>
 
           <label className="block mb-2 font-bold">
-            👤 الاسم
+          👤 الاسم داخل اللعبة / In-Game Name
           </label>
 
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
             className="w-full bg-[#0B1120] border border-slate-700 rounded-xl p-4 focus:border-yellow-400 outline-none"
-            placeholder="اكتب اسمك"
+            placeholder="مثال: TITANS | Example: TITANS"
           />
 
         </div>
@@ -44,33 +44,43 @@ export default function RegisterForm({
         <div>
 
           <label className="block mb-2 font-bold">
-            🆔 ID اللاعب
+          🆔 معرف اللاعب / Player ID
           </label>
 
           <input
-            value={playerId}
-            onChange={(e) => setPlayerId(e.target.value)}
-            className="w-full bg-[#0B1120] border border-slate-700 rounded-xl p-4 focus:border-yellow-400 outline-none"
-            placeholder="مثال: 123456789"
-          />
+  value={playerId}
+  onChange={(e) => setPlayerId(e.target.value)}
+  className="w-full bg-[#0B1120] border border-slate-700 rounded-xl p-4 focus:border-yellow-400 outline-none"
+  placeholder="Example: 123456789"
+/>
 
+<p className="text-sm text-gray-400 mt-2 leading-7">
+  📌 يجب أن تظهر في الصورة بيانات حسابك أو إثبات المشاركة.
+  <br />
+  📌 The screenshot must clearly show your account information or proof of participation.
+</p>
         </div>
 
         <div>
 
           <label className="block mb-2 font-bold">
-            📷 صورة
+          📷 إثبات المشاركة / Proof of Participation
           </label>
 
           <input
-            type="file"
-            accept="image/*"
-            onChange={(e) =>
-              setImage(e.target.files?.[0] || null)
-            }
-            className="w-full bg-[#0B1120] border border-slate-700 rounded-xl p-3"
-          />
+  type="file"
+  accept="image/*"
+  onChange={(e) =>
+    setImage(e.target.files?.[0] || null)
+  }
+  className="w-full bg-[#0B1120] border border-slate-700 rounded-xl p-3"
+/>
 
+<p className="text-sm text-gray-400 mt-2">
+  ارفع لقطة شاشة تثبت المشاركة
+  <br />
+  Upload a screenshot as proof of participation.
+</p>
         </div>
 
         {image && (
@@ -90,7 +100,9 @@ export default function RegisterForm({
           }
           className="w-full bg-yellow-400 hover:bg-yellow-500 text-black py-4 rounded-xl font-black text-lg transition disabled:opacity-50"
         >
-          {loading ? "⏳ جاري التسجيل..." : "🚀 تسجيل"}
+          {loading
+  ? "⏳ جاري إرسال المشاركة... / Submitting..."
+  : "🚀 إرسال المشاركة / Submit Entry"}
         </button>
 
       </div>

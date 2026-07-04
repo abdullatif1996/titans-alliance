@@ -24,17 +24,19 @@ export default function Header() {
               TITANS ALLIANCE
             </h1>
 
-            <p className="text-gray-400 mt-2 text-lg">
-              سجل الآن للمشاركة في المسابقة
-            </p>
+            <p className="text-gray-400 mt-2 text-lg leading-7">
+  سجل الآن للمشاركة في المسابقة
+  <br />
+  Register now to join the contest
+</p>
 
             <div className="flex items-center gap-2 mt-4">
 
               <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
 
               <span className="text-green-400 font-semibold">
-                التسجيل مفتوح
-              </span>
+  التسجيل مفتوح / Registration Open
+</span>
 
             </div>
 
