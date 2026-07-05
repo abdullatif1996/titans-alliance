@@ -6,78 +6,108 @@ type StatsCardsProps = {
   lastUpdate: string;
 };
 
+const cards = (
+  participants: number,
+  results: number,
+  lastUpdate: string
+) => [
+  {
+    title: "إجمالي المشاركين",
+    value: participants,
+    color: "yellow",
+    icon: "👥",
+  },
+  {
+    title: "نتائج البحث",
+    value: results,
+    color: "cyan",
+    icon: "🔍",
+  },
+  {
+    title: "آخر تحديث",
+    value: lastUpdate || "--:--",
+    color: "indigo",
+    icon: "🕒",
+  },
+  {
+    title: "حالة النظام",
+    value: "ONLINE",
+    sub: "النظام يعمل",
+    color: "green",
+    icon: "🟢",
+  },
+];
+
 export default function StatsCards({
   participants,
   results,
   lastUpdate,
 }: StatsCardsProps) {
- return (
-  <div className="grid grid-cols-2 xl:grid-cols-4 gap-6 mb-10">
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 mb-8">
 
-   <div className="bg-gradient-to-br from-[#182235] to-[#111827] rounded-[30px] p-7 border border-yellow-500/20 shadow-xl hover:shadow-yellow-500/10 hover:-translate-y-1 hover:border-yellow-400 transition-all duration-300">
-      <p className="text-gray-400 text-sm">
-        إجمالي المشاركين
-      </p>
+      {cards(participants, results, lastUpdate).map((card) => (
 
-      <div className="flex items-end justify-between mt-5">
-        <h2 className="text-6xl font-black text-yellow-400">
-          {participants}
-        </h2>
+        <div
+          key={card.title}
+          className="
+          rounded-3xl
+          border
+          border-slate-800
+          bg-gradient-to-br
+          from-[#182235]
+          to-[#111827]
+          p-6
+          hover:border-yellow-400
+          hover:-translate-y-1
+          transition
+          duration-300
+          "
+        >
 
-       <div className="w-16 h-16 rounded-2xl bg-yellow-400/10 border border-yellow-400/20 flex items-center justify-center text-3xl">
-  👥
-</div>
-      </div>
-    </div>
+          <div className="flex items-center justify-between">
 
-    <div className="bg-[#151d2d] rounded-3xl p-6 border border-cyan-500/20 hover:border-cyan-400 transition">
-      <p className="text-gray-400 text-sm">
-        نتائج البحث
-      </p>
+            <div>
 
-      <div className="flex items-end justify-between mt-5">
-        <h2 className="text-6xl font-black text-cyan-400">
-          {results}
-        </h2>
+              <p className="text-slate-400 text-sm">
+                {card.title}
+              </p>
 
-        <span className="text-5xl">🔍</span>
-      </div>
-    </div>
+              <h2 className="mt-4 text-4xl md:text-5xl font-black text-white break-all">
+                {card.value}
+              </h2>
 
-    <div className="bg-[#151d2d] rounded-3xl p-6 border border-indigo-500/20 hover:border-indigo-400 transition">
-      <p className="text-gray-400 text-sm">
-        آخر تحديث
-      </p>
+              {card.sub && (
+                <p className="mt-2 text-xs text-slate-500">
+                  {card.sub}
+                </p>
+              )}
 
-      <div className="flex items-end justify-between mt-5">
-        <h2 className="text-3xl font-black text-white">
-          {lastUpdate}
-        </h2>
+            </div>
 
-        <span className="text-5xl">🕒</span>
-      </div>
-    </div>
+            <div
+              className="
+              w-16
+              h-16
+              rounded-2xl
+              bg-white/5
+              border
+              border-slate-700
+              flex
+              items-center
+              justify-center
+              text-3xl
+              "
+            >
+              {card.icon}
+            </div>
 
-    <div className="bg-[#151d2d] rounded-3xl p-6 border border-green-500/20 hover:border-green-400 transition">
-      <p className="text-gray-400 text-sm">
-        حالة النظام
-      </p>
+          </div>
 
-      <div className="flex items-end justify-between mt-5">
-        <div>
-          <h2 className="text-3xl font-black text-green-400">
-            ONLINE
-          </h2>
-
-          <p className="text-xs text-gray-500 mt-1">
-            النظام يعمل
-          </p>
         </div>
 
-        <span className="text-5xl">🟢</span>
-      </div>
-    </div>
+      ))}
 
-  </div>
-);
+    </div>
+  );
 }

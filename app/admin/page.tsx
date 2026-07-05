@@ -326,13 +326,13 @@ async function toggleRegistration() {
     setSearch={setSearch}
   />
 
-  <div className="flex flex-wrap items-center justify-between gap-4">
+  <div className="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-5">
 
-    <div className="flex flex-wrap gap-3">
+    <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
 
       <button
         onClick={() => setFilter("all")}
-        className={`px-5 h-11 rounded-xl font-bold transition ${
+        className={`min-w-[130px] h-11 rounded-xl font-bold transition ${
           filter === "all"
             ? "bg-yellow-400 text-black"
             : "bg-[#1b2433] hover:bg-[#263248]"
@@ -343,7 +343,7 @@ async function toggleRegistration() {
 
       <button
         onClick={() => setFilter("pending")}
-        className={`px-5 h-11 rounded-xl font-bold transition ${
+        className={`min-w-[130px] h-11 rounded-xl font-bold transition ${
           filter === "pending"
             ? "bg-yellow-400 text-black"
             : "bg-[#1b2433] hover:bg-[#263248]"
@@ -365,25 +365,25 @@ async function toggleRegistration() {
 
     </div>
 
-    <div className="flex flex-wrap gap-3">
+    <div className="grid grid-cols-2 xl:flex gap-3 w-full xl:w-auto">
 
       <button
         onClick={pickWinner}
-        className="bg-[#1b2433] hover:bg-yellow-400 hover:text-black px-5 h-11 rounded-xl font-bold transition"
+className="bg-[#1b2433] hover:bg-yellow-400 hover:text-black h-11 rounded-xl font-bold transition w-full xl:w-auto px-5"
       >
         🎲 فائز
       </button>
 
       <a
         href="/admin/deleted"
-        className="bg-[#1b2433] hover:bg-purple-600 px-5 h-11 rounded-xl font-bold flex items-center transition"
+        className="bg-[#1b2433] hover:bg-purple-600 h-11 rounded-xl font-bold flex items-center justify-center transition w-full xl:w-auto px-5"
       >
         🗑️ المحذوفات
       </a>
 
       <button
         onClick={toggleRegistration}
-        className={`px-5 h-11 rounded-xl font-bold transition ${
+        className={`h-11 rounded-xl font-bold transition w-full xl:w-auto px-5 rounded-xl font-bold transition ${
           registrationOpen
             ? "bg-red-600 hover:bg-red-700"
             : "bg-green-600 hover:bg-green-700"
@@ -394,7 +394,7 @@ async function toggleRegistration() {
 
       <button
         onClick={loadData}
-        className="bg-[#1b2433] hover:bg-sky-600 px-5 h-11 rounded-xl font-bold transition"
+        className="bg-[#1b2433] hover:bg-sky-600 h-11 rounded-xl font-bold transition w-full xl:w-auto px-5"
       >
         🔄 تحديث
       </button>

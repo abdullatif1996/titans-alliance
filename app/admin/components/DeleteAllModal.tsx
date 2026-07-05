@@ -18,49 +18,57 @@ export default function DeleteAllModal({
 
   return (
 
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex justify-center items-center z-50 p-5">
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50 p-5">
 
-      <div className="bg-[#111827] border border-red-600 rounded-3xl w-full max-w-md p-8 shadow-2xl">
+      <div className="w-full max-w-lg rounded-[34px] border border-red-500/20 bg-gradient-to-b from-[#182235] to-[#101827] shadow-2xl overflow-hidden">
 
-        <div className="text-center">
+        <div className="p-8 text-center border-b border-slate-800">
 
-          <div className="text-7xl mb-4">
+          <div className="text-8xl mb-4">
             ⚠️
           </div>
 
-          <h2 className="text-3xl font-black text-red-500">
+          <h2 className="text-4xl font-black text-red-500">
             حذف جميع المشاركين
           </h2>
 
-          <p className="text-gray-400 mt-4">
-            سيتم حذف
-          </p>
-
-          <h3 className="text-yellow-400 text-5xl font-black mt-3">
-            {count}
-          </h3>
-
-          <p className="text-gray-400 mt-3">
-            مشارك بشكل نهائي
+          <p className="text-slate-400 mt-4">
+            سيتم حذف جميع المشاركين نهائياً
           </p>
 
         </div>
 
-        <div className="grid grid-cols-2 gap-4 mt-10">
+        <div className="p-8">
 
-          <button
-            onClick={onCancel}
-            className="bg-slate-700 hover:bg-slate-600 rounded-xl py-3 font-bold transition"
-          >
-            إلغاء
-          </button>
+          <div className="rounded-3xl bg-[#0b1220] border border-slate-700 p-6 text-center">
 
-          <button
-            onClick={onConfirm}
-            className="bg-red-600 hover:bg-red-700 rounded-xl py-3 font-bold transition"
-          >
-            حذف الكل
-          </button>
+            <p className="text-slate-500">
+              عدد المشاركين
+            </p>
+
+            <h2 className="text-6xl font-black text-yellow-400 mt-3">
+              {count}
+            </h2>
+
+          </div>
+
+          <div className="grid grid-cols-2 gap-4 mt-8">
+
+            <button
+              onClick={onCancel}
+              className="h-14 rounded-2xl bg-slate-700 hover:bg-slate-600 font-black transition"
+            >
+              إلغاء
+            </button>
+
+            <button
+              onClick={onConfirm}
+              className="h-14 rounded-2xl bg-red-600 hover:bg-red-700 font-black transition"
+            >
+              حذف الكل
+            </button>
+
+          </div>
 
         </div>
 
@@ -69,5 +77,4 @@ export default function DeleteAllModal({
     </div>
 
   );
-
 }

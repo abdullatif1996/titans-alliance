@@ -1,78 +1,68 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-
-type SidebarProps = {
-  onLogout: () => void;
+type SearchBarProps = {
+  search: string;
+  setSearch: (value: string) => void;
 };
 
-export default function Sidebar({ onLogout }: SidebarProps) {
+export default function SearchBar({
+  search,
+  setSearch,
+}: SearchBarProps) {
   return (
-    <aside className="w-[260px] min-h-screen bg-[#0B1220] border-r border-slate-800 flex flex-col justify-between">
+    <div className="space-y-4">
 
-      <div>
+      <div className="relative">
 
-        <div className="p-8 border-b border-slate-800">
+        <span className="absolute left-5 top-1/2 -translate-y-1/2 text-2xl">
+          🔍
+        </span>
 
-          <div className="flex items-center gap-4">
+        <input
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="ابحث باسم اللاعب أو الـ ID..."
+          className="
+          w-full
+          h-14
+          rounded-2xl
+          bg-[#0b1220]
+          border
+          border-slate-700
+          pl-14
+          pr-5
+          text-white
+          placeholder:text-slate-500
+          outline-none
+          focus:border-yellow-400
+          transition
+          "
+        />
 
-            <Image
-              src="/logo.jpg"
-              alt="Titans"
-              width={60}
-              height={60}
-              className="rounded-2xl border border-yellow-400"
-            />
+      </div>
 
-            <div>
+      {search && (
 
-              <h1 className="text-yellow-400 text-2xl font-black">
-                TITANS
-              </h1>
+        <div className="flex items-center justify-between">
 
-              <p className="text-gray-400 text-sm">
-                ALLIANCE
-              </p>
+          <p className="text-sm text-yellow-400 truncate">
+            البحث:
+            <span className="font-bold ml-2">
+              {search}
+            </span>
+          </p>
 
-            </div>
-
-          </div>
-
-        </div>
-
-        <div className="p-6 space-y-3">
-
-          <div className="bg-yellow-400 text-black rounded-xl px-4 py-3 font-bold">
-            🏠 لوحة التحكم
-          </div>
-
-          <div className="rounded-xl px-4 py-3 text-gray-300 hover:bg-[#182235] transition">
-            👥 المشاركون
-          </div>
-
-          <Link
-            href="/admin/deleted"
-            className="block rounded-xl px-4 py-3 text-gray-300 hover:bg-[#182235] transition"
+          <button
+            onClick={() => setSearch("")}
+            className="bg-red-600 hover:bg-red-700 transition px-4 h-10 rounded-xl font-bold"
           >
-            🗑️ المحذوفات
-          </Link>
+            مسح
+          </button>
 
         </div>
 
-      </div>
+      )}
 
-      <div className="p-6">
-
-        <button
-          onClick={onLogout}
-          className="w-full bg-red-600 hover:bg-red-700 rounded-xl py-3 font-bold transition"
-        >
-          🚪 تسجيل الخروج
-        </button>
-
-      </div>
-
-    </aside>
+    </div>
   );
 }
