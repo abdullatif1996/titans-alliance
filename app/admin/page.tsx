@@ -328,11 +328,11 @@ async function toggleRegistration() {
 
   <div className="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-5">
 
-    <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+    <div className="grid grid-cols-2 sm:grid-cols-3 xl:flex gap-3 w-full">
 
       <button
         onClick={() => setFilter("all")}
-        className={`min-w-[130px] h-11 rounded-xl font-bold transition ${
+        className={`w-full h-11 rounded-xl font-bold transition ${
           filter === "all"
             ? "bg-yellow-400 text-black"
             : "bg-[#1b2433] hover:bg-[#263248]"
@@ -343,7 +343,7 @@ async function toggleRegistration() {
 
       <button
         onClick={() => setFilter("pending")}
-        className={`min-w-[130px] h-11 rounded-xl font-bold transition ${
+        className={`w-full h-11 rounded-xl font-bold transition ${
           filter === "pending"
             ? "bg-yellow-400 text-black"
             : "bg-[#1b2433] hover:bg-[#263248]"
@@ -354,7 +354,7 @@ async function toggleRegistration() {
 
       <button
         onClick={() => setFilter("copied")}
-        className={`px-5 h-11 rounded-xl font-bold transition ${
+        className={`w-full h-11 rounded-xl font-bold transition ${
           filter === "copied"
             ? "bg-yellow-400 text-black"
             : "bg-[#1b2433] hover:bg-[#263248]"
