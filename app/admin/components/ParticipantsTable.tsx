@@ -65,10 +65,11 @@ rounded-[28px]
 
                 <div className="flex flex-col sm:flex-row gap-5 flex-1 items-center sm:items-start">
 
-             <a
+            <a
   href={player.imageUrl}
   target="_blank"
-  rel="noopener noreferrer"
+  rel="noreferrer"
+  onClick={() => console.log(player.imageUrl)}
 >
   <img
     src={player.imageUrl || "/no-image.png"}
