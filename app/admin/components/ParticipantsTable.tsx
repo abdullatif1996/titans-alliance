@@ -65,9 +65,14 @@ rounded-[28px]
 
                 <div className="flex flex-col sm:flex-row gap-5 flex-1 items-center sm:items-start">
 
-                  <img
-                    src={player.imageUrl || "/no-image.png"}
-                    className="
+             <a
+  href={player.imageUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <img
+    src={player.imageUrl || "/no-image.png"}
+    className="
 w-28
 h-28
 sm:w-24
@@ -81,9 +86,10 @@ mx-auto
 group-hover:scale-105
 transition
 duration-300
+cursor-pointer
 "
-                  />
-
+  />
+</a>
                   <div className="flex-1 min-w-0 text-center sm:text-right">
 
                     <h3 className="text-xl sm:text-2xl xl:text-3xl font-black text-white truncate">
