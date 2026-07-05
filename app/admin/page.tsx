@@ -236,122 +236,212 @@ async function toggleRegistration() {
   }
 
   return (
-    <main className="min-h-screen bg-[#0B1120] text-white">
+<main className="min-h-screen bg-gradient-to-b from-[#0a0f1d] via-[#101827] to-[#0a0f1d] text-white">
 
       <div className="max-w-7xl mx-auto p-6">
+<div className="bg-[#111827]/95 backdrop-blur-xl border border-slate-800 rounded-3xl shadow-2xl mb-8">
 
-        <Header
-          onRefresh={loadData}
-          onLogout={() => {
-            setAccess(false);
-          }}
-          onPickWinner={pickWinner}
+  <div className="flex items-center justify-between px-8 py-6 border-b border-slate-800">
+
+    <div className="flex items-center gap-5">
+
+      <div className="relative">
+
+        <img
+          src="/logo.jpg"
+          className="w-20 h-20 rounded-3xl border-2 border-yellow-400 shadow-[0_0_25px_rgba(250,204,21,.35)]"
         />
 
-        <StatsCards
-          participants={participants.length}
-          results={filtered.length}
-          lastUpdate={lastUpdate}
-        />
-
-        <SearchBar
-          search={search}
-          setSearch={setSearch}
-        />
-<div className="flex flex-wrap gap-3 mb-6">
-
-  <button
-    onClick={() => setFilter("all")}
-    className={`px-5 py-3 rounded-xl font-bold ${
-      filter === "all"
-        ? "bg-yellow-400 text-black"
-        : "bg-slate-700"
-    }`}
-  >
-    📋 الكل
-  </button>
-
-  <button
-    onClick={() => setFilter("pending")}
-    className={`px-5 py-3 rounded-xl font-bold ${
-      filter === "pending"
-        ? "bg-orange-500"
-        : "bg-slate-700"
-    }`}
-  >
-    ⏳ غير المشحونين
-  </button>
-
-  <button
-    onClick={() => setFilter("copied")}
-    className={`px-5 py-3 rounded-xl font-bold ${
-      filter === "copied"
-        ? "bg-green-600"
-        : "bg-slate-700"
-    }`}
-  >
-    ✅ تم الشحن
-  </button>
-
-</div>
-        <div className="flex flex-wrap gap-3 mb-6">
-
-  <button
-    onClick={toggleRegistration}
-    className={`px-5 py-3 rounded-xl font-bold ${
-      registrationOpen
-        ? "bg-red-600 hover:bg-red-700"
-        : "bg-green-600 hover:bg-green-700"
-    }`}
-  >
-    {registrationOpen
-      ? "🔒 إغلاق التسجيل"
-      : "🔓 فتح التسجيل"}
-  </button>
-
-  <button
-    onClick={() => setDeleteOpen(true)}
-    className="bg-red-600 hover:bg-red-700 px-5 py-3 rounded-xl font-bold"
-  >
-    🗑️ حذف الكل
-  </button>
-
-  <button
-    onClick={loadData}
-    className="bg-blue-600 hover:bg-blue-700 px-5 py-3 rounded-xl font-bold"
-  >
-    🔄 تحديث
-  </button>
-
-</div>
-
-        <ParticipantsTable
-  participants={filtered}
-  onDelete={deleteParticipant}
-  onCopyId={(player) => copyId(player)}
-  onToggleCopied={(player) => toggleCopied(player)}
-/>
-
-        <WinnerModal
-          open={winnerOpen}
-          winner={winner}
-          onClose={() => setWinnerOpen(false)}
-        />
-
-        <DeleteAllModal
-          open={deleteOpen}
-          count={participants.length}
-          onCancel={() => setDeleteOpen(false)}
-          onConfirm={deleteAllConfirmed}
-        />
-
-        <Toast
-          open={toast.open}
-          text={toast.text}
-        />
+        <span className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-green-500 border-2 border-[#111827]"></span>
 
       </div>
 
-    </main>
-  );
+      <div>
+
+        <h1 className="text-5xl font-black text-white">
+          TITANS
+        </h1>
+
+        <p className="text-yellow-400 font-bold tracking-widest">
+          ALLIANCE CONTROL PANEL
+        </p>
+
+        <p className="text-gray-500 text-sm mt-2">
+          إدارة المشاركين والسحب
+        </p>
+
+      </div>
+
+    </div>
+
+    <div className="flex items-center gap-4">
+
+  <div className="bg-[#1b2433] rounded-2xl px-5 py-3">
+
+    <p className="text-xs text-gray-500">
+      المشاركون
+    </p>
+
+    <h2 className="text-2xl font-black text-yellow-400">
+      {participants.length}
+    </h2>
+
+  </div>
+
+  <div className="bg-[#1b2433] rounded-2xl px-5 py-3">
+
+    <p className="text-xs text-gray-500">
+      النظام
+    </p>
+
+    <div className="flex items-center gap-2 mt-1">
+
+      <span className="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse"></span>
+
+      <span className="text-green-400 font-bold">
+        ONLINE
+      </span>
+
+    </div>
+
+  </div>
+
+  <button
+    onClick={() => setAccess(false)}
+    className="w-14 h-14 rounded-2xl bg-red-600 hover:bg-red-700 transition text-xl"
+  >
+    🚪
+  </button>
+
+</div>
+
+  </div>
+
+  <div className="p-6">
+
+   <div className="space-y-5">
+
+  <SearchBar
+    search={search}
+    setSearch={setSearch}
+  />
+
+  <div className="flex flex-wrap items-center justify-between gap-4">
+
+    <div className="flex flex-wrap gap-3">
+
+      <button
+        onClick={() => setFilter("all")}
+        className={`px-5 h-11 rounded-xl font-bold transition ${
+          filter === "all"
+            ? "bg-yellow-400 text-black"
+            : "bg-[#1b2433] hover:bg-[#263248]"
+        }`}
+      >
+        📋 الكل
+      </button>
+
+      <button
+        onClick={() => setFilter("pending")}
+        className={`px-5 h-11 rounded-xl font-bold transition ${
+          filter === "pending"
+            ? "bg-yellow-400 text-black"
+            : "bg-[#1b2433] hover:bg-[#263248]"
+        }`}
+      >
+        ⏳ بانتظار
+      </button>
+
+      <button
+        onClick={() => setFilter("copied")}
+        className={`px-5 h-11 rounded-xl font-bold transition ${
+          filter === "copied"
+            ? "bg-yellow-400 text-black"
+            : "bg-[#1b2433] hover:bg-[#263248]"
+        }`}
+      >
+        ✅ تم الشحن
+      </button>
+
+    </div>
+
+    <div className="flex flex-wrap gap-3">
+
+      <button
+        onClick={pickWinner}
+        className="bg-[#1b2433] hover:bg-yellow-400 hover:text-black px-5 h-11 rounded-xl font-bold transition"
+      >
+        🎲 فائز
+      </button>
+
+      <a
+        href="/admin/deleted"
+        className="bg-[#1b2433] hover:bg-purple-600 px-5 h-11 rounded-xl font-bold flex items-center transition"
+      >
+        🗑️ المحذوفات
+      </a>
+
+      <button
+        onClick={toggleRegistration}
+        className={`px-5 h-11 rounded-xl font-bold transition ${
+          registrationOpen
+            ? "bg-red-600 hover:bg-red-700"
+            : "bg-green-600 hover:bg-green-700"
+        }`}
+      >
+        {registrationOpen ? "🔒 إغلاق التسجيل" : "🔓 فتح التسجيل"}
+      </button>
+
+      <button
+        onClick={loadData}
+        className="bg-[#1b2433] hover:bg-sky-600 px-5 h-11 rounded-xl font-bold transition"
+      >
+        🔄 تحديث
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+  </div>
+
+</div>
+
+<StatsCards
+  participants={participants.length}
+  results={filtered.length}
+  lastUpdate={lastUpdate}
+/>
+
+<ParticipantsTable
+  participants={filtered}
+  onDelete={deleteParticipant}
+  onCopyId={copyId}
+  onToggleCopied={toggleCopied}
+/>
+
+<WinnerModal
+  open={winnerOpen}
+  winner={winner}
+  onClose={() => setWinnerOpen(false)}
+/>
+
+<DeleteAllModal
+  open={deleteOpen}
+  count={participants.length}
+  onCancel={() => setDeleteOpen(false)}
+  onConfirm={deleteAllConfirmed}
+/>
+
+<Toast
+  open={toast.open}
+  text={toast.text}
+/>
+
+</div>
+
+</main>
+);
 }

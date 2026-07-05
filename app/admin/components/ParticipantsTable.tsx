@@ -14,159 +14,136 @@ export default function ParticipantsTable({
   onToggleCopied,
 }: ParticipantsTableProps) {
   return (
-    <div className="bg-[#111827] border border-slate-700 rounded-3xl overflow-hidden shadow-2xl">
+   <div className="bg-gradient-to-b from-[#111827] to-[#0f172a] rounded-[32px] border border-slate-800 shadow-2xl overflow-hidden">
 
-      <div className="overflow-x-auto">
+  <div className="flex items-center justify-between px-8 py-7 border-b border-slate-800 bg-white/[0.02]">
+    <div>
 
-        <table className="min-w-full">
+      <h2 className="text-3xl font-black tracking-wide text-white">
+        👥 قائمة المشاركين
+      </h2>
 
-          <thead className="bg-yellow-400 text-black">
+     <p className="text-gray-500 mt-2">
+        إجمالي المشاركين: {participants.length}
+      </p>
 
-            <tr>
-
-              <th className="p-4 w-16">#</th>
-
-              <th className="p-4 text-right">
-                اللاعب
-              </th>
-
-              <th className="p-4 text-center">
-                ID
-              </th>
-
-              <th className="p-4 text-center">
-                الصورة
-              </th>
-
-              <th className="p-4 text-center">
-                نسخ
-              </th>
-
-              <th className="p-4 text-center">
-                حذف
-              </th>
-
-            </tr>
-
-          </thead>
-
-          <tbody>
-
-            {participants.length === 0 ? (
-
-              <tr>
-
-                <td
-                  colSpan={6}
-                  className="text-center p-12 text-gray-400"
-                >
-                  لا يوجد مشاركون
-                </td>
-
-              </tr>
-
-            ) : (
-
-              participants.map((player, index) => (
-
-                <tr
-                  key={player.id}
-                  className="border-t border-slate-700 hover:bg-[#1E293B] transition"
-                >
-
-                  <td className="text-center p-4 text-yellow-400 font-black">
-                    {index + 1}
-                  </td>
-
-                  <td className="p-4">
-
-                    <div>
-
-  <div className="flex items-center gap-2">
-
-    <h3 className="font-bold text-white">
-      {player.name}
-    </h3>
-
-    {player.copied && (
-      <button
-        onClick={() => onToggleCopied(player)}
-        className="text-green-400 hover:scale-125 transition"
-        title="إلغاء علامة التسليم"
-      >
-        ✅
-      </button>
-    )}
+    </div>
 
   </div>
 
-  <p className="text-xs text-gray-500 mt-1">
-    لاعب
-  </p>
+<div className="overflow-x-auto max-h-[650px] overflow-y-auto">
+
+<div className="space-y-6 p-8">
+
+{participants.length === 0 ? (
+
+<div className="text-center text-gray-400 py-20">
+لا يوجد مشاركين
+</div>
+
+) : (
+
+participants.map((player) => (
+
+<div
+key={player.id}
+className="group bg-gradient-to-r from-[#182235] to-[#111827] border border-slate-800 rounded-[30px] p-7 flex items-center justify-between hover:border-yellow-400 hover:shadow-[0_0_35px_rgba(250,204,21,.08)] hover:-translate-y-1 transition-all duration-300"
+>
+
+{/* اليسار */}
+
+<div className="flex items-center gap-5">
+
+<img
+src={player.imageUrl}
+className="w-24 h-24 rounded-3xl border-2 border-yellow-400 object-cover shadow-xl group-hover:scale-105 transition duration-300"
+/>
+
+<div>
+
+<h2 className="text-3xl font-black text-white tracking-wide">
+{player.name}
+</h2>
+
+<div className="mt-2">
+
+{player.copied ? (
+
+<span className="inline-flex px-3 py-1 rounded-full bg-green-500/20 text-green-400 border border-green-500 text-sm">
+✅ تم الشحن
+</span>
+
+) : (
+
+<span className="inline-flex px-3 py-1 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500 text-sm">
+⏳ بانتظار
+</span>
+
+)}
 
 </div>
 
-                  </td>
+<div className="mt-5 inline-flex items-center rounded-2xl bg-[#0f172a] border border-slate-700 px-5 py-3 font-mono text-sky-400 tracking-widest">
+ID-{player.playerId}
+</div>
 
-                  <td className="text-center font-mono text-gray-300">
-                    {player.playerId}
-                  </td>                  <td className="text-center">
+</div>
 
-                    {player.imageUrl ? (
+</div>
 
-                      <a
-                        href={player.imageUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <img
-                          src={player.imageUrl}
-                          className="w-16 h-16 rounded-xl object-cover mx-auto border border-yellow-400 hover:scale-110 transition cursor-pointer"
-                        />
-                      </a>
+{/* اليمين */}
 
-                    ) : (
+<div className="flex items-center gap-10">
 
-                      <div className="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center mx-auto">
-                        📷
-                      </div>
+<div className="flex flex-col gap-3">
 
-                    )}
+<button
+onClick={() => onCopyId(player)}
+className="w-44 h-12 bg-[#202b3f] hover:bg-yellow-400 hover:text-black rounded-2xl font-bold transition-all duration-300 border border-slate-700 hover:border-yellow-400"
+>
+📋 نسخ
+</button>
+{player.copied && (
 
-                  </td>
+<button
+onClick={() => onToggleCopied(player)}
+className="w-40 bg-[#133b23] border border-green-500 hover:bg-green-500 hover:text-white py-3 rounded-xl font-bold transition"
+>
+↩️ إلغاء الشحن
+</button>
 
-                  <td className="text-center">
+)}
 
-                    <button
-                      onClick={() => onCopyId(player)}
-                      className="bg-blue-600 hover:bg-blue-700 px-3 py-2 rounded-lg transition"
-                    >
-                      📋
-                    </button>
+<button
+onClick={() => onDelete(player.id)}
+className="w-44 h-12 bg-[#202b3f] hover:bg-red-600 rounded-2xl font-bold transition-all duration-300 border border-slate-700 hover:border-red-500"
+>
+🗑 حذف
+</button>
 
-                  </td>
+</div>
 
-                  <td className="text-center">
+<a
+href={player.imageUrl}
+target="_blank"
+rel="noopener noreferrer"
+>
 
-                    <button
-                      onClick={() => onDelete(player.id)}
-                      className="bg-red-600 hover:bg-red-700 px-3 py-2 rounded-lg transition"
-                    >
-                      🗑️
-                    </button>
+<img
+src={player.imageUrl}
+className="w-64 h-36 rounded-2xl object-cover border border-slate-700 group-hover:border-yellow-400 group-hover:scale-105 transition-all duration-300 hover:scale-[1.01]"
+/>
 
-                  </td>
+</a>
 
-                </tr>
+</div>
+</div>
 
-              ))
+))
 
-            )}
+)}
 
-          </tbody>
-
-        </table>
-
+</div>
       </div>
 
     </div>

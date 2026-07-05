@@ -15,20 +15,19 @@ export default function Header({
   onPickWinner,
 }: HeaderProps) {
   return (
-    <div className="bg-[#111827] border border-slate-700 rounded-3xl p-6 mb-8 shadow-2xl">
+    <div className="bg-[#111827] border border-yellow-400/20 rounded-3xl p-7 mb-8 shadow-2xl">
 
-      <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
+      <div className="flex flex-col xl:flex-row justify-between items-center gap-8">
 
-        {/* Logo */}
-
+        {/* الشعار */}
         <div className="flex items-center gap-5">
 
           <Image
             src="/logo.jpg"
             alt="Titans"
-            width={75}
-            height={75}
-            className="rounded-2xl border border-yellow-400"
+            width={85}
+            height={85}
+            className="rounded-2xl border-2 border-yellow-400 shadow-[0_0_20px_rgba(250,204,21,.35)]"
           />
 
           <div>
@@ -37,16 +36,16 @@ export default function Header({
               TITANS ALLIANCE
             </h1>
 
-            <p className="text-slate-400 mt-1">
-              لوحة الإدارة
+            <p className="text-slate-400 mt-1 text-lg">
+              لوحة التحكم
             </p>
 
-            <div className="flex items-center gap-2 mt-3">
+            <div className="flex items-center gap-2 mt-4">
 
               <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
 
-              <span className="text-green-400 text-sm font-semibold">
-                النظام يعمل
+              <span className="text-green-400 font-semibold">
+                النظام يعمل بكفاءة
               </span>
 
             </div>
@@ -55,36 +54,36 @@ export default function Header({
 
         </div>
 
-        {/* Buttons */}
+        {/* الأزرار */}
 
-        <div className="flex flex-wrap justify-center gap-3">
+        <div className="flex flex-wrap justify-center gap-4">
 
           <button
             onClick={onRefresh}
-            className="bg-blue-600 hover:bg-blue-700 transition px-5 py-3 rounded-xl font-bold"
+            className="bg-yellow-400 hover:bg-yellow-500 text-black transition duration-300 hover:scale-105 px-6 py-3 rounded-2xl font-bold shadow-lg"
           >
             🔄 تحديث
           </button>
 
           <button
             onClick={onPickWinner}
-            className="bg-yellow-400 hover:bg-yellow-500 transition text-black px-5 py-3 rounded-xl font-bold"
+            className="bg-yellow-400 hover:bg-yellow-500 text-black transition duration-300 hover:scale-105 px-6 py-3 rounded-2xl font-bold shadow-lg"
           >
             🎲 اختيار فائز
           </button>
 
           <Link
             href="/admin/deleted"
-            className="bg-purple-600 hover:bg-purple-700 transition px-5 py-3 rounded-xl font-bold"
+            className="bg-yellow-400 hover:bg-yellow-500 text-black transition duration-300 hover:scale-105 px-6 py-3 rounded-2xl font-bold shadow-lg"
           >
             🗑️ المحذوفات
           </Link>
 
           <button
             onClick={onLogout}
-            className="bg-red-600 hover:bg-red-700 transition px-5 py-3 rounded-xl font-bold"
+            className="bg-yellow-400 hover:bg-yellow-500 text-black transition duration-300 hover:scale-105 px-6 py-3 rounded-2xl font-bold shadow-lg"
           >
-            🚪 تسجيل خروج
+            🚪 تسجيل الخروج
           </button>
 
         </div>
