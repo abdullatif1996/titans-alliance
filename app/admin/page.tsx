@@ -171,6 +171,7 @@ async function toggleRegistration() {
     if (participants.length === 0) {
       showToast("⚠️ لا يوجد مشاركين");
       return;
+     
     }
 
     const winner =
@@ -179,7 +180,17 @@ async function toggleRegistration() {
     setWinner(winner);
     setWinnerOpen(true);
   }
+async function copyNames() {
 
+  const text = filtered
+    .map((player, index) => `${index + 1}- ${player.name}`)
+    .join("\n");
+
+  await navigator.clipboard.writeText(text);
+
+  showToast("📋 تم نسخ أسماء المشاركين");
+
+}
   const filtered = participants.filter((p) => {
 
   const matchesSearch =
@@ -365,42 +376,48 @@ async function toggleRegistration() {
 
     </div>
 
-    <div className="grid grid-cols-2 xl:flex gap-3 w-full xl:w-auto">
+   <div className="grid grid-cols-2 xl:flex gap-3 w-full xl:w-auto">
 
-      <button
-        onClick={pickWinner}
-className="bg-[#1b2433] hover:bg-yellow-400 hover:text-black h-11 rounded-xl font-bold transition w-full xl:w-auto px-5"
-      >
-        🎲 فائز
-      </button>
+  <button
+    onClick={copyNames}
+    className="bg-emerald-600 hover:bg-emerald-700 h-11 rounded-xl font-bold transition w-full xl:w-auto px-5"
+  >
+    📋 نسخ الأسماء
+  </button>
 
-      <a
-        href="/admin/deleted"
-        className="bg-[#1b2433] hover:bg-purple-600 h-11 rounded-xl font-bold flex items-center justify-center transition w-full xl:w-auto px-5"
-      >
-        🗑️ المحذوفات
-      </a>
+  <button
+    onClick={pickWinner}
+    className="bg-[#1b2433] hover:bg-yellow-400 hover:text-black h-11 rounded-xl font-bold transition w-full xl:w-auto px-5"
+  >
+    🎲 فائز
+  </button>
 
-      <button
-        onClick={toggleRegistration}
-        className={`h-11 rounded-xl font-bold transition w-full xl:w-auto px-5 rounded-xl font-bold transition ${
-          registrationOpen
-            ? "bg-red-600 hover:bg-red-700"
-            : "bg-green-600 hover:bg-green-700"
-        }`}
-      >
-        {registrationOpen ? "🔒 إغلاق التسجيل" : "🔓 فتح التسجيل"}
-      </button>
+  <a
+    href="/admin/deleted"
+    className="bg-[#1b2433] hover:bg-purple-600 h-11 rounded-xl font-bold flex items-center justify-center transition w-full xl:w-auto px-5"
+  >
+    🗑️ المحذوفات
+  </a>
 
-      <button
-        onClick={loadData}
-        className="bg-[#1b2433] hover:bg-sky-600 h-11 rounded-xl font-bold transition w-full xl:w-auto px-5"
-      >
-        🔄 تحديث
-      </button>
+  <button
+    onClick={toggleRegistration}
+    className={`h-11 rounded-xl font-bold transition w-full xl:w-auto px-5 ${
+      registrationOpen
+        ? "bg-red-600 hover:bg-red-700"
+        : "bg-green-600 hover:bg-green-700"
+    }`}
+  >
+    {registrationOpen ? "🔒 إغلاق التسجيل" : "🔓 فتح التسجيل"}
+  </button>
 
-    </div>
+  <button
+    onClick={loadData}
+    className="bg-[#1b2433] hover:bg-sky-600 h-11 rounded-xl font-bold transition w-full xl:w-auto px-5"
+  >
+    🔄 تحديث
+  </button>
 
+</div>
   </div>
 
 </div>
