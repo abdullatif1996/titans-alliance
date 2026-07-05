@@ -20,7 +20,7 @@ export default function Header({
       <div className="flex flex-col xl:flex-row justify-between items-center gap-8">
 
         {/* الشعار */}
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-4">
 
           <Image
             src="/logo.jpg"
