@@ -241,7 +241,7 @@ async function toggleRegistration() {
       <div className="max-w-7xl mx-auto p-6">
 <div className="bg-[#111827]/95 backdrop-blur-xl border border-slate-800 rounded-3xl shadow-2xl mb-8">
 
-  <div className="flex items-center justify-between px-8 py-6 border-b border-slate-800">
+  <div className="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-6 px-6 xl:px-8 py-6 border-b border-slate-800">
 
     <div className="flex items-center gap-5">
 
@@ -274,9 +274,9 @@ async function toggleRegistration() {
 
     </div>
 
-    <div className="flex items-center gap-4">
+    <div className="flex flex-wrap justify-center xl:justify-end gap-4 w-full xl:w-auto">
 
-  <div className="bg-[#1b2433] rounded-2xl px-5 py-3">
+  <div className="flex-1 xl:flex-none bg-[#1b2433] rounded-2xl px-5 py-3 min-w-[120px]">
 
     <p className="text-xs text-gray-500">
       المشاركون
@@ -288,7 +288,7 @@ async function toggleRegistration() {
 
   </div>
 
-  <div className="bg-[#1b2433] rounded-2xl px-5 py-3">
+  <div className="flex-1 xl:flex-none bg-[#1b2433] rounded-2xl px-5 py-3 min-w-[120px]">
 
     <p className="text-xs text-gray-500">
       النظام
@@ -308,7 +308,7 @@ async function toggleRegistration() {
 
   <button
     onClick={() => setAccess(false)}
-    className="w-14 h-14 rounded-2xl bg-red-600 hover:bg-red-700 transition text-xl"
+    className="w-full sm:w-14 h-12 sm:h-14 rounded-2xl bg-red-600 hover:bg-red-700 transition text-xl"
   >
     🚪
   </button>
