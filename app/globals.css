@@ -14,6 +14,10 @@
   --bg: #fbfafd;
   --line: #eae5f7;
 
+  --green: #16a34a;
+  --amber: #d97706;
+  --red: #e23744;
+
   --background: var(--bg);
   --foreground: var(--ink);
 }
@@ -32,6 +36,10 @@
   --color-gold-soft: var(--gold-soft);
   --color-bg: var(--bg);
   --color-line: var(--line);
+
+  --color-green: var(--green);
+  --color-amber: var(--amber);
+  --color-red: var(--red);
 
   --font-sans: var(--font-tajawal);
   --font-heading: var(--font-cairo);

@@ -1,29 +1,13 @@
 "use client";
 
 import { FaMedal } from "react-icons/fa";
+import { DEFAULT_PRIZES, type Prize } from "../contentDefaults";
 
-const prizes = [
-  {
-    place: "المركز الثالث",
-    amount: "2,500",
-    medalColor: "text-amber-700",
-    elevated: false,
-  },
-  {
-    place: "المركز الثاني",
-    amount: "5,000",
-    medalColor: "text-gray-400",
-    elevated: false,
-  },
-  {
-    place: "المركز الأول",
-    amount: "10,000",
-    medalColor: "text-gold",
-    elevated: true,
-  },
-];
+type PrizeBannerProps = {
+  prizes?: Prize[];
+};
 
-export default function PrizeBanner() {
+export default function PrizeBanner({ prizes = DEFAULT_PRIZES }: PrizeBannerProps) {
   return (
     <div className="bg-gradient-to-l from-violet via-violet-deep to-violet py-10 px-4">
       <div
@@ -37,24 +21,33 @@ export default function PrizeBanner() {
           pb-2 sm:pb-0
         "
       >
-        {prizes.map((p) => (
-          <div
-            key={p.place}
-            className={`hover-lift shrink-0 w-[78%] sm:w-auto snap-center border-2 rounded-3xl p-6 text-center transition ${
-              p.elevated
-                ? "bg-gold-soft border-gold shadow-2xl sm:scale-105 sm:-translate-y-2"
-                : "bg-white border-line shadow-lg"
-            }`}
-          >
-            <div className={`flex items-center justify-center animate-float-medal ${p.medalColor}`}>
-              <FaMedal className="text-4xl" />
+        {prizes.map((p, index) => {
+          const elevated = index === 0;
+
+          return (
+            <div
+              key={p.id}
+              className={`hover-lift shrink-0 w-[78%] sm:w-auto snap-center border-2 rounded-3xl p-6 text-center transition ${
+                elevated
+                  ? "bg-gold-soft border-gold shadow-2xl sm:scale-105 sm:-translate-y-2"
+                  : "bg-white border-line shadow-lg"
+              }`}
+            >
+              <div
+                className={`flex items-center justify-center animate-float-medal ${
+                  elevated ? "text-gold" : "text-violet"
+                }`}
+              >
+                <FaMedal className="text-4xl" />
+              </div>
+              <p className="text-ink-soft font-bold mt-3">{p.label}</p>
+              <p className="text-2xl font-black mt-1 text-gold">
+                {p.amount.toLocaleString("en-US")}{" "}
+                <span className="text-base font-bold">{p.unit}</span>
+              </p>
             </div>
-            <p className="text-ink-soft font-bold mt-3">{p.place}</p>
-            <p className="text-2xl font-black mt-1 text-gold">
-              {p.amount} <span className="text-base font-bold">ذهبية</span>
-            </p>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

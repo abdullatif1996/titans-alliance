@@ -1,6 +1,16 @@
 "use client";
 
-export default function Hero() {
+import { DEFAULT_TITLE, DEFAULT_SUBTITLE } from "../contentDefaults";
+
+type HeroProps = {
+  title?: string;
+  subtitle?: string;
+};
+
+export default function Hero({
+  title = DEFAULT_TITLE,
+  subtitle = DEFAULT_SUBTITLE,
+}: HeroProps) {
   return (
     <section
       id="hero"
@@ -15,11 +25,11 @@ export default function Hero() {
         </span>
 
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-ink leading-tight">
-          مسابقة تيتانز الأسبوعية
+          {title}
         </h1>
 
         <p className="text-ink-soft text-lg sm:text-xl mt-6 max-w-2xl leading-9">
-          سجل الآن ونافس على جوائز مذهلة كل أسبوع!
+          {subtitle}
         </p>
 
         <a

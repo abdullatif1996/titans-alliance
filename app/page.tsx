@@ -25,12 +25,27 @@ import Toast from "./components/Toast";
 import LogoBadge from "./components/LogoBadge";
 import Reveal from "./components/Reveal";
 import StickyRegisterButton from "./components/StickyRegisterButton";
+import {
+  DEFAULT_TITLE,
+  DEFAULT_SUBTITLE,
+  DEFAULT_REQUIRE_PROOF_IMAGE,
+  DEFAULT_PRIZES,
+  DEFAULT_RULES,
+  type Prize,
+  type Rule,
+} from "./contentDefaults";
 
 export default function Home() {
   const [registrationOpenManual, setRegistrationOpenManual] = useState(true);
   const [deadline, setDeadline] = useState<Date | null>(null);
   const [isRegistrationOpen, setIsRegistrationOpen] = useState(true);
   const [participantsCount, setParticipantsCount] = useState(0);
+
+  const [title, setTitle] = useState(DEFAULT_TITLE);
+  const [subtitle, setSubtitle] = useState(DEFAULT_SUBTITLE);
+  const [requireProofImage, setRequireProofImage] = useState(DEFAULT_REQUIRE_PROOF_IMAGE);
+  const [prizes, setPrizes] = useState<Prize[]>(DEFAULT_PRIZES);
+  const [rules, setRules] = useState<Rule[]>(DEFAULT_RULES);
 
   const [loading, setLoading] = useState(false);
   const [successOpen, setSuccessOpen] = useState(false);
@@ -44,6 +59,24 @@ export default function Home() {
       setRegistrationOpenManual(data.registrationOpen ?? true);
       const deadlineField = data.deadline as Timestamp | undefined;
       setDeadline(deadlineField ? deadlineField.toDate() : null);
+
+      setTitle(data.title || DEFAULT_TITLE);
+      setSubtitle(data.subtitle || DEFAULT_SUBTITLE);
+      setRequireProofImage(
+        data.requireProofImage === undefined
+          ? DEFAULT_REQUIRE_PROOF_IMAGE
+          : data.requireProofImage
+      );
+      setPrizes(
+        Array.isArray(data.prizes) && data.prizes.length > 0
+          ? data.prizes
+          : DEFAULT_PRIZES
+      );
+      setRules(
+        Array.isArray(data.rules) && data.rules.length > 0
+          ? data.rules
+          : DEFAULT_RULES
+      );
     });
 
     return () => unsub();
@@ -81,7 +114,7 @@ export default function Home() {
     return data.secure_url as string;
   }
 
-  async function handleSubmit(name: string, playerId: string, image: File) {
+  async function handleSubmit(name: string, playerId: string, image: File | null) {
     if (!isRegistrationOpen) {
       showToast("🚫 التسجيل مغلق");
       return;
@@ -102,7 +135,7 @@ export default function Home() {
         return;
       }
 
-      const imageUrl = await uploadImage(image);
+      const imageUrl = image ? await uploadImage(image) : null;
 
       await addDoc(collection(db, "participants"), {
         name,
@@ -124,11 +157,11 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-bg">
       <LogoBadge />
-      <Hero />
+      <Hero title={title} subtitle={subtitle} />
 
       <section id="contest">
         <Reveal>
-          <PrizeBanner />
+          <PrizeBanner prizes={prizes} />
         </Reveal>
 
         <div
@@ -141,6 +174,7 @@ export default function Home() {
               onError={showToast}
               loading={loading}
               disabled={!isRegistrationOpen}
+              requireImage={requireProofImage}
             />
           </Reveal>
 
@@ -156,7 +190,7 @@ export default function Home() {
       </section>
 
       <Reveal>
-        <RulesSection />
+        <RulesSection rules={rules} />
       </Reveal>
 
       <SiteFooter />

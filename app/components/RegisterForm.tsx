@@ -7,10 +7,11 @@ const MAX_SIZE = 5 * 1024 * 1024;
 const ALLOWED_TYPES = ["image/jpeg", "image/jpg", "image/png"];
 
 type RegisterFormProps = {
-  onSubmit: (name: string, playerId: string, image: File) => void;
+  onSubmit: (name: string, playerId: string, image: File | null) => void;
   onError: (message: string) => void;
   loading: boolean;
   disabled: boolean;
+  requireImage?: boolean;
 };
 
 export default function RegisterForm({
@@ -18,6 +19,7 @@ export default function RegisterForm({
   onError,
   loading,
   disabled,
+  requireImage = true,
 }: RegisterFormProps) {
   const [name, setName] = useState("");
   const [playerId, setPlayerId] = useState("");
@@ -60,7 +62,7 @@ export default function RegisterForm({
       return;
     }
 
-    if (!image) {
+    if (requireImage && !image) {
       onError("⚠️ الرجاء رفع صورة من داخل اللعبة كإثبات");
       return;
     }
@@ -68,7 +70,8 @@ export default function RegisterForm({
     onSubmit(name.trim(), playerId.trim(), image);
   }
 
-  const canSubmit = name.trim() && playerId.trim() && image && !loading && !disabled;
+  const canSubmit =
+    name.trim() && playerId.trim() && (!requireImage || image) && !loading && !disabled;
 
   return (
     <div className="bg-white border border-line rounded-[24px] p-6 sm:p-8 shadow-xl">
@@ -110,69 +113,71 @@ export default function RegisterForm({
           />
         </div>
 
-        <div>
-          <label className="block mb-2 font-bold text-ink">
-            صورة من داخل اللعبة (إثبات)
-          </label>
+        {requireImage && (
+          <div>
+            <label className="block mb-2 font-bold text-ink">
+              صورة من داخل اللعبة (إثبات)
+            </label>
 
-          <div
-            onClick={() => !disabled && fileInputRef.current?.click()}
-            onDragOver={(e) => {
-              e.preventDefault();
-              if (!disabled) setDragActive(true);
-            }}
-            onDragLeave={() => setDragActive(false)}
-            onDrop={handleDrop}
-            className={`rounded-2xl border-2 border-dashed p-6 text-center transition ${
-              disabled
-                ? "opacity-50 cursor-not-allowed border-line bg-violet-mist"
-                : image
-                ? "cursor-pointer border-green-400 bg-green-50"
-                : "cursor-pointer border-violet/40 bg-violet-mist " +
-                  (dragActive ? "border-violet bg-violet-mist" : "hover:border-violet/70")
-            }`}
-          >
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="image/jpeg,image/png"
-              className="hidden"
-              disabled={disabled}
-              onChange={(e) => {
-                const file = e.target.files?.[0];
-                if (file) validateAndSetImage(file);
+            <div
+              onClick={() => !disabled && fileInputRef.current?.click()}
+              onDragOver={(e) => {
+                e.preventDefault();
+                if (!disabled) setDragActive(true);
               }}
-            />
+              onDragLeave={() => setDragActive(false)}
+              onDrop={handleDrop}
+              className={`rounded-2xl border-2 border-dashed p-6 text-center transition ${
+                disabled
+                  ? "opacity-50 cursor-not-allowed border-line bg-violet-mist"
+                  : image
+                  ? "cursor-pointer border-green-400 bg-green-50"
+                  : "cursor-pointer border-violet/40 bg-violet-mist " +
+                    (dragActive ? "border-violet bg-violet-mist" : "hover:border-violet/70")
+              }`}
+            >
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/jpeg,image/png"
+                className="hidden"
+                disabled={disabled}
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) validateAndSetImage(file);
+                }}
+              />
 
-            {preview ? (
-              <div className="flex flex-col items-center">
-                <div className="relative">
-                  <img
-                    src={preview}
-                    alt="معاينة الصورة"
-                    className="w-32 h-32 object-cover rounded-2xl border-2 border-green-400 mx-auto"
-                  />
-                  <span className="absolute -bottom-2 -left-2 bg-white rounded-full text-green-500 shadow">
-                    <FaCheckCircle className="text-2xl" />
-                  </span>
+              {preview ? (
+                <div className="flex flex-col items-center">
+                  <div className="relative">
+                    <img
+                      src={preview}
+                      alt="معاينة الصورة"
+                      className="w-32 h-32 object-cover rounded-2xl border-2 border-green-400 mx-auto"
+                    />
+                    <span className="absolute -bottom-2 -left-2 bg-white rounded-full text-green-500 shadow">
+                      <FaCheckCircle className="text-2xl" />
+                    </span>
+                  </div>
+                  <p className="text-green-600 font-bold mt-3">تم اختيار الصورة</p>
                 </div>
-                <p className="text-green-600 font-bold mt-3">تم اختيار الصورة</p>
-              </div>
-            ) : (
-              <div className="flex flex-col items-center text-violet">
-                <FaCloudUploadAlt className="text-4xl mb-3 animate-cloud-bob" />
-                <p className="font-semibold text-ink-soft">ارفع صورة من داخل اللعبة</p>
-              </div>
-            )}
-          </div>
+              ) : (
+                <div className="flex flex-col items-center text-violet">
+                  <FaCloudUploadAlt className="text-4xl mb-3 animate-cloud-bob" />
+                  <p className="font-semibold text-ink-soft">ارفع صورة من داخل اللعبة</p>
+                </div>
+              )}
+            </div>
 
-          <p className="text-sm text-ink-soft mt-2">
-            يجب أن يظهر اسمك ورقم اللاعب بوضوح
-          </p>
-          <p className="text-xs text-ink-soft mt-1">
-            JPG, PNG - الحد الأقصى 5MB
-          </p>
-        </div>
+            <p className="text-sm text-ink-soft mt-2">
+              يجب أن يظهر اسمك ورقم اللاعب بوضوح
+            </p>
+            <p className="text-xs text-ink-soft mt-1">
+              JPG, PNG - الحد الأقصى 5MB
+            </p>
+          </div>
+        )}
 
         <button
           onClick={handleSubmit}

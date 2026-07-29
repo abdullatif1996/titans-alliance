@@ -1,29 +1,12 @@
 "use client";
 
-const rules = [
-  {
-    number: 4,
-    title: "قرار الإدارة نهائي",
-    desc: "قرارات الإدارة لا يمكن الاعتراض عليها",
-  },
-  {
-    number: 3,
-    title: "معلومات صحيحة",
-    desc: "تأكد من إدخال اسم ورقم اللاعب بشكل صحيح",
-  },
-  {
-    number: 2,
-    title: "صورة واضحة",
-    desc: "يجب أن تكون الصورة واضحة ويظهر فيها اسم ورقم اللاعب",
-  },
-  {
-    number: 1,
-    title: "الالتزام بالقوانين",
-    desc: "يجب الالتزام بجميع قوانين اللعبة",
-  },
-];
+import { DEFAULT_RULES, type Rule } from "../contentDefaults";
 
-export default function RulesSection() {
+type RulesSectionProps = {
+  rules?: Rule[];
+};
+
+export default function RulesSection({ rules = DEFAULT_RULES }: RulesSectionProps) {
   return (
     <section id="rules" className="bg-violet-mist py-16 px-4">
       <div className="max-w-6xl mx-auto">
@@ -32,13 +15,13 @@ export default function RulesSection() {
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {rules.map((rule) => (
+          {rules.map((rule, index) => (
             <div
-              key={rule.number}
+              key={rule.id}
               className="hover-lift bg-white border border-line rounded-2xl p-6 shadow-lg relative"
             >
               <span className="absolute -top-4 -right-4 w-10 h-10 rounded-full bg-violet text-white font-black flex items-center justify-center text-lg shadow-lg">
-                {rule.number}
+                {rules.length - index}
               </span>
               <h3 className="font-black text-violet text-lg mt-2">
                 {rule.title}

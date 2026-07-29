@@ -4,12 +4,14 @@ type WinnerModalProps = {
   open: boolean;
   winner: any;
   onClose: () => void;
+  onConfirmWinner: (winner: any) => void;
 };
 
 export default function WinnerModal({
   open,
   winner,
   onClose,
+  onConfirmWinner,
 }: WinnerModalProps) {
 
   if (!open) return null;
@@ -66,23 +68,37 @@ export default function WinnerModal({
 
           </div>
 
+          {winner?.winner && (
+            <p className="text-center text-gold font-bold mt-4">
+              🏆 تم تعيين هذا اللاعب كفائز مسبقاً
+            </p>
+          )}
+
           <div className="grid grid-cols-2 gap-4 mt-8">
 
             <button
               onClick={copyWinner}
-              className="h-14 rounded-2xl bg-violet text-white font-black hover:scale-105 transition"
+              className="h-14 rounded-2xl bg-violet-mist text-ink font-black hover:bg-violet hover:text-white transition"
             >
               📋 نسخ
             </button>
 
             <button
-              onClick={onClose}
-              className="h-14 rounded-2xl bg-red-600 hover:bg-red-700 text-white font-black transition"
+              onClick={() => onConfirmWinner(winner)}
+              disabled={winner?.winner}
+              className="h-14 rounded-2xl bg-gold text-white font-black hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              إغلاق
+              🏆 تعيين كفائز
             </button>
 
           </div>
+
+          <button
+            onClick={onClose}
+            className="w-full h-12 rounded-2xl bg-line text-ink font-bold hover:bg-gray-300 transition mt-4"
+          >
+            إغلاق
+          </button>
 
         </div>
 
