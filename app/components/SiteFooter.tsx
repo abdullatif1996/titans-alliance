@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { FaDiscord, FaTiktok, FaYoutube } from "react-icons/fa";
+import { FaDiscord, FaTiktok } from "react-icons/fa";
 
 export default function SiteFooter() {
   return (
@@ -31,12 +31,6 @@ export default function SiteFooter() {
             className="w-11 h-11 rounded-xl bg-[#F5F3FF] border border-pink-300 flex items-center justify-center text-pink-500 hover:bg-pink-500 hover:text-white transition"
           >
             <FaTiktok size={20} />
-          </a>
-          <a
-            href="#"
-            className="w-11 h-11 rounded-xl bg-[#F5F3FF] border border-red-300 flex items-center justify-center text-red-500 hover:bg-red-500 hover:text-white transition"
-          >
-            <FaYoutube size={20} />
           </a>
         </div>
 

@@ -13,7 +13,6 @@ import {
   Timestamp,
 } from "firebase/firestore";
 
-import SiteHeader from "./components/SiteHeader";
 import Hero from "./components/Hero";
 import PrizeBanner from "./components/PrizeBanner";
 import RegisterForm from "./components/RegisterForm";
@@ -121,7 +120,6 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-[#FAFAFA]">
-      <SiteHeader />
       <Hero />
 
       <section id="contest">
