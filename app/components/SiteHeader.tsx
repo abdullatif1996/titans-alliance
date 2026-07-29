@@ -34,7 +34,7 @@ export default function SiteHeader() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 bg-[#0B1120]/90 backdrop-blur-md border-b border-slate-800">
+    <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
         <a href="#hero" className="flex items-center gap-3 shrink-0">
           <Image
@@ -42,9 +42,9 @@ export default function SiteHeader() {
             alt="Titans Alliance"
             width={44}
             height={44}
-            className="rounded-xl border-2 border-yellow-400"
+            className="rounded-xl border-2 border-[#7C3AED]"
           />
-          <span className="hidden sm:block text-yellow-400 font-black text-lg tracking-wide">
+          <span className="hidden sm:block text-[#7C3AED] font-black text-lg tracking-wide">
             TITANS ALLIANCE
           </span>
         </a>
@@ -56,8 +56,8 @@ export default function SiteHeader() {
               href={`#${s.id}`}
               className={`font-bold pb-1 border-b-2 transition ${
                 active === s.id
-                  ? "text-yellow-400 border-yellow-400"
-                  : "text-gray-300 border-transparent hover:text-yellow-300"
+                  ? "text-[#7C3AED] border-[#7C3AED]"
+                  : "text-gray-500 border-transparent hover:text-[#7C3AED]"
               }`}
             >
               {s.label}
@@ -69,7 +69,7 @@ export default function SiteHeader() {
           href="https://discord.gg/tFfgNhU4M"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl font-bold transition shrink-0"
+          className="flex items-center gap-2 bg-[#7C3AED] hover:bg-[#6D28D9] text-white px-4 py-2 rounded-xl font-bold transition shrink-0"
         >
           <FaDiscord size={18} />
           <span className="hidden sm:inline">انضم إلى الديسكورد</span>
@@ -83,8 +83,8 @@ export default function SiteHeader() {
             href={`#${s.id}`}
             className={`text-sm font-bold pb-1 border-b-2 transition ${
               active === s.id
-                ? "text-yellow-400 border-yellow-400"
-                : "text-gray-400 border-transparent"
+                ? "text-[#7C3AED] border-[#7C3AED]"
+                : "text-gray-500 border-transparent"
             }`}
           >
             {s.label}

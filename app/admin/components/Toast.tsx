@@ -16,7 +16,7 @@ export default function Toast({
 
     <div className="fixed bottom-8 right-8 z-[999]">
 
-      <div className="bg-green-600 text-white px-6 py-4 rounded-2xl shadow-2xl border border-green-400 animate-pulse">
+      <div className="bg-white text-[#1E1B2E] px-6 py-4 rounded-2xl shadow-xl border border-gray-200 font-bold">
 
         {text}
 

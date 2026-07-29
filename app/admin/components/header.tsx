@@ -15,7 +15,7 @@ export default function Header({
   onPickWinner,
 }: HeaderProps) {
   return (
-    <div className="bg-[#111827] border border-yellow-400/20 rounded-3xl p-7 mb-8 shadow-2xl">
+    <div className="bg-white border border-gray-200 rounded-3xl p-7 mb-8 shadow-xl">
 
       <div className="flex flex-col xl:flex-row justify-between items-center gap-8">
 
@@ -27,16 +27,16 @@ export default function Header({
             alt="Titans"
             width={85}
             height={85}
-            className="rounded-2xl border-2 border-yellow-400 shadow-[0_0_20px_rgba(250,204,21,.35)]"
+            className="rounded-2xl border-2 border-[#7C3AED] shadow-[0_0_20px_rgba(124,58,237,.3)]"
           />
 
           <div>
 
-            <h1 className="text-4xl font-black text-yellow-400">
+            <h1 className="text-4xl font-black text-[#7C3AED]">
               TITANS ALLIANCE
             </h1>
 
-            <p className="text-slate-400 mt-1 text-lg">
+            <p className="text-gray-500 mt-1 text-lg">
               لوحة التحكم
             </p>
 
@@ -44,7 +44,7 @@ export default function Header({
 
               <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
 
-              <span className="text-green-400 font-semibold">
+              <span className="text-green-600 font-semibold">
                 النظام يعمل بكفاءة
               </span>
 
@@ -60,28 +60,28 @@ export default function Header({
 
           <button
             onClick={onRefresh}
-            className="bg-yellow-400 hover:bg-yellow-500 text-black transition duration-300 hover:scale-105 px-6 py-3 rounded-2xl font-bold shadow-lg"
+            className="bg-[#7C3AED] hover:bg-[#6D28D9] text-white transition duration-300 hover:scale-105 px-6 py-3 rounded-2xl font-bold shadow-lg"
           >
             🔄 تحديث
           </button>
 
           <button
             onClick={onPickWinner}
-            className="bg-yellow-400 hover:bg-yellow-500 text-black transition duration-300 hover:scale-105 px-6 py-3 rounded-2xl font-bold shadow-lg"
+            className="bg-[#7C3AED] hover:bg-[#6D28D9] text-white transition duration-300 hover:scale-105 px-6 py-3 rounded-2xl font-bold shadow-lg"
           >
             🎲 اختيار فائز
           </button>
 
           <Link
             href="/admin/deleted"
-            className="bg-yellow-400 hover:bg-yellow-500 text-black transition duration-300 hover:scale-105 px-6 py-3 rounded-2xl font-bold shadow-lg"
+            className="bg-[#7C3AED] hover:bg-[#6D28D9] text-white transition duration-300 hover:scale-105 px-6 py-3 rounded-2xl font-bold shadow-lg"
           >
             🗑️ المحذوفات
           </Link>
 
           <button
             onClick={onLogout}
-            className="bg-yellow-400 hover:bg-yellow-500 text-black transition duration-300 hover:scale-105 px-6 py-3 rounded-2xl font-bold shadow-lg"
+            className="bg-[#7C3AED] hover:bg-[#6D28D9] text-white transition duration-300 hover:scale-105 px-6 py-3 rounded-2xl font-bold shadow-lg"
           >
             🚪 تسجيل الخروج
           </button>

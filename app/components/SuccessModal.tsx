@@ -11,11 +11,11 @@ export default function SuccessModal({ open, name, onClose }: SuccessModalProps)
 
   return (
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-5">
-      <div className="bg-[#111827] border border-green-500 rounded-3xl p-10 text-center shadow-2xl max-w-md w-full">
+      <div className="bg-white border border-green-300 rounded-3xl p-10 text-center shadow-2xl max-w-md w-full">
         <div className="text-7xl mb-5">🎉</div>
-        <h2 className="text-3xl font-black text-green-400">تم التسجيل بنجاح</h2>
-        <p className="text-gray-400 mt-3">
-          أهلاً بك <span className="text-yellow-400 font-bold">{name}</span>
+        <h2 className="text-3xl font-black text-green-600">تم التسجيل بنجاح</h2>
+        <p className="text-gray-500 mt-3">
+          أهلاً بك <span className="text-[#7C3AED] font-bold">{name}</span>
         </p>
         <p className="text-gray-500 mt-4">شكراً لمشاركتك في TITANS ALLIANCE</p>
         <button

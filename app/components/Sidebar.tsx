@@ -59,9 +59,9 @@ export default function Sidebar({
 
   return (
     <div className="space-y-5">
-      <div className="bg-[#111827] border border-slate-700 rounded-2xl p-6 shadow-xl">
-        <div className="flex items-center gap-2 text-gray-300 font-bold mb-4">
-          <FaHourglassHalf className="text-yellow-400" />
+      <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-lg">
+        <div className="flex items-center gap-2 text-gray-500 font-bold mb-4">
+          <FaHourglassHalf className="text-[#7C3AED]" />
           الوقت المتبقي للتسجيل
         </div>
 
@@ -75,9 +75,9 @@ export default function Sidebar({
             ].map((unit) => (
               <div
                 key={unit.label}
-                className="bg-[#0B1120] rounded-xl py-3 border border-slate-800"
+                className="bg-[#F5F3FF] rounded-xl py-3 border border-gray-200"
               >
-                <p className="text-xl sm:text-2xl font-black text-yellow-400">
+                <p className="text-xl sm:text-2xl font-black text-[#7C3AED]">
                   {pad(unit.value)}
                 </p>
                 <p className="text-[11px] text-gray-500">{unit.label}</p>
@@ -89,27 +89,27 @@ export default function Sidebar({
         )}
       </div>
 
-      <div className="bg-[#111827] border border-slate-700 rounded-2xl p-6 shadow-xl">
-        <div className="flex items-center gap-2 text-gray-300 font-bold mb-3">
-          <FaUsers className="text-yellow-400" />
+      <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-lg">
+        <div className="flex items-center gap-2 text-gray-500 font-bold mb-3">
+          <FaUsers className="text-[#7C3AED]" />
           عدد المشاركين
         </div>
-        <p className="text-4xl font-black text-yellow-400">
+        <p className="text-4xl font-black text-[#7C3AED]">
           {participantsCount}
         </p>
         <p className="text-sm text-gray-500 mt-1">لاعب سجلوا حتى الآن</p>
       </div>
 
-      <div className="bg-[#111827] border border-slate-700 rounded-2xl p-6 shadow-xl">
-        <div className="flex items-center gap-2 text-gray-300 font-bold mb-3">
-          <FaCalendarAlt className="text-yellow-400" />
+      <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-lg">
+        <div className="flex items-center gap-2 text-gray-500 font-bold mb-3">
+          <FaCalendarAlt className="text-[#7C3AED]" />
           موعد انتهاء التسجيل
         </div>
-        <p className="text-white font-semibold leading-7">{formattedDeadline}</p>
+        <p className="text-[#1E1B2E] font-semibold leading-7">{formattedDeadline}</p>
       </div>
 
-      <div className="bg-[#111827] border border-slate-700 rounded-2xl p-6 shadow-xl">
-        <p className="text-gray-300 font-bold mb-3">حالة التسجيل</p>
+      <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-lg">
+        <p className="text-gray-500 font-bold mb-3">حالة التسجيل</p>
         <div className="flex items-center gap-2">
           <span
             className={`w-3 h-3 rounded-full ${
@@ -118,7 +118,7 @@ export default function Sidebar({
           />
           <span
             className={`font-black text-lg ${
-              isOpen ? "text-green-400" : "text-red-400"
+              isOpen ? "text-green-600" : "text-red-600"
             }`}
           >
             {isOpen ? "مفتوح" : "مغلق"}

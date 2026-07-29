@@ -71,46 +71,46 @@ export default function RegisterForm({
   const canSubmit = name.trim() && playerId.trim() && image && !loading && !disabled;
 
   return (
-    <div className="bg-[#111827] border border-slate-700 rounded-3xl p-6 sm:p-8 shadow-2xl">
+    <div className="bg-white border border-gray-200 rounded-3xl p-6 sm:p-8 shadow-xl">
       <div className="flex flex-col items-center text-center mb-8">
-        <div className="w-16 h-16 rounded-full bg-yellow-400 flex items-center justify-center mb-4 shadow-lg">
-          <FaUser className="text-2xl text-black" />
+        <div className="w-16 h-16 rounded-full bg-[#7C3AED] flex items-center justify-center mb-4 shadow-lg">
+          <FaUser className="text-2xl text-white" />
         </div>
-        <h2 className="text-2xl font-black text-white">سجل في المسابقة</h2>
-        <p className="text-gray-400 mt-2">
+        <h2 className="text-2xl font-black text-[#1E1B2E]">سجل في المسابقة</h2>
+        <p className="text-gray-500 mt-2">
           أدخل بياناتك أدناه للمشاركة في المسابقة
         </p>
       </div>
 
       <div className="space-y-5">
         <div>
-          <label className="block mb-2 font-bold text-white">
+          <label className="block mb-2 font-bold text-[#1E1B2E]">
             اسم اللاعب داخل اللعبة
           </label>
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
             disabled={disabled}
-            className="w-full bg-[#0B1120] border border-slate-700 rounded-xl p-4 text-white focus:border-yellow-400 outline-none disabled:opacity-50"
+            className="w-full bg-white border border-gray-300 rounded-xl p-4 text-[#1E1B2E] focus:border-[#7C3AED] outline-none disabled:opacity-50"
             placeholder="مثال: TITANS"
           />
         </div>
 
         <div>
-          <label className="block mb-2 font-bold text-white">
+          <label className="block mb-2 font-bold text-[#1E1B2E]">
             رقم اللاعب (Player ID)
           </label>
           <input
             value={playerId}
             onChange={(e) => setPlayerId(e.target.value)}
             disabled={disabled}
-            className="w-full bg-[#0B1120] border border-slate-700 rounded-xl p-4 text-white focus:border-yellow-400 outline-none disabled:opacity-50"
+            className="w-full bg-white border border-gray-300 rounded-xl p-4 text-[#1E1B2E] focus:border-[#7C3AED] outline-none disabled:opacity-50"
             placeholder="مثال: 123456789"
           />
         </div>
 
         <div>
-          <label className="block mb-2 font-bold text-white">
+          <label className="block mb-2 font-bold text-[#1E1B2E]">
             صورة من داخل اللعبة (إثبات)
           </label>
 
@@ -124,11 +124,11 @@ export default function RegisterForm({
             onDrop={handleDrop}
             className={`rounded-xl border-2 border-dashed p-6 text-center transition ${
               disabled
-                ? "opacity-50 cursor-not-allowed border-slate-700"
+                ? "opacity-50 cursor-not-allowed border-gray-300"
                 : "cursor-pointer " +
                   (dragActive
-                    ? "border-yellow-400 bg-yellow-400/5"
-                    : "border-slate-700 hover:border-yellow-400/60")
+                    ? "border-[#7C3AED] bg-[#F5F3FF]"
+                    : "border-gray-300 hover:border-[#7C3AED]/60")
             }`}
           >
             <input
@@ -147,17 +147,17 @@ export default function RegisterForm({
               <img
                 src={preview}
                 alt="معاينة الصورة"
-                className="w-32 h-32 object-cover rounded-2xl border-2 border-yellow-400 mx-auto"
+                className="w-32 h-32 object-cover rounded-2xl border-2 border-[#7C3AED] mx-auto"
               />
             ) : (
-              <div className="flex flex-col items-center text-gray-400">
+              <div className="flex flex-col items-center text-gray-500">
                 <FaCloudUploadAlt className="text-4xl mb-3" />
                 <p className="font-semibold">ارفع صورة من داخل اللعبة</p>
               </div>
             )}
           </div>
 
-          <p className="text-sm text-gray-400 mt-2">
+          <p className="text-sm text-gray-500 mt-2">
             يجب أن يظهر اسمك ورقم اللاعب بوضوح
           </p>
           <p className="text-xs text-gray-500 mt-1">
@@ -168,7 +168,7 @@ export default function RegisterForm({
         <button
           onClick={handleSubmit}
           disabled={!canSubmit}
-          className="w-full flex items-center justify-center gap-3 bg-yellow-400 hover:bg-yellow-500 text-black py-4 rounded-xl font-black text-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full flex items-center justify-center gap-3 bg-[#7C3AED] hover:bg-[#6D28D9] text-white py-4 rounded-xl font-black text-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <FaPaperPlane />
           {loading ? "جاري التسجيل..." : "تسجيل في المسابقة"}
@@ -176,11 +176,11 @@ export default function RegisterForm({
 
         <p className="text-xs text-gray-500 text-center leading-6">
           بالتسجيل، أنت توافق على{" "}
-          <a href="#" className="text-yellow-400 hover:underline">
+          <a href="#" className="text-[#7C3AED] hover:underline">
             شروط المسابقة
           </a>{" "}
           و{" "}
-          <a href="#" className="text-yellow-400 hover:underline">
+          <a href="#" className="text-[#7C3AED] hover:underline">
             سياسة الخصوصية
           </a>
         </p>

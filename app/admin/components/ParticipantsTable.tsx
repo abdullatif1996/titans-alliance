@@ -14,13 +14,13 @@ export default function ParticipantsTable({
   onToggleCopied,
 }: ParticipantsTableProps) {
   return (
-    <div className="bg-gradient-to-b from-[#111827] to-[#0b1220] rounded-[32px] border border-slate-800 shadow-2xl overflow-hidden">
+    <div className="bg-white rounded-[32px] border border-gray-200 shadow-xl overflow-hidden">
 
       {/* Header */}
 
-      <div className="px-8 py-7 border-b border-slate-800 bg-white/[0.02]">
+      <div className="px-8 py-7 border-b border-gray-200">
 
-        <h2 className="text-3xl font-black">
+        <h2 className="text-3xl font-black text-[#1E1B2E]">
           👥 قائمة المشاركين
         </h2>
 
@@ -34,7 +34,7 @@ export default function ParticipantsTable({
 
         {participants.length === 0 ? (
 
-          <div className="text-center py-24 text-slate-500 text-lg">
+          <div className="text-center py-24 text-gray-400 text-lg">
             لا يوجد مشاركون
           </div>
 
@@ -48,13 +48,10 @@ export default function ParticipantsTable({
 group
 rounded-[28px]
               border
-              border-slate-800
-              bg-gradient-to-r
-              from-[#182235]
-              to-[#101827]
+              border-gray-200
+              bg-white
               p-6
-              hover:border-yellow-400 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(250,204,21,.08)]
-              hover:shadow-[0_0_25px_rgba(250,204,21,.08)]
+              hover:border-[#7C3AED] hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(124,58,237,.1)]
               transition
               duration-300
               "
@@ -81,7 +78,7 @@ sm:h-24
 rounded-3xl
 object-cover
 border-2
-border-yellow-400
+border-[#7C3AED]
 shadow-xl
 mx-auto
 group-hover:scale-105
@@ -93,7 +90,7 @@ cursor-pointer
 </a>
                   <div className="flex-1 min-w-0 text-center sm:text-right">
 
-                    <h3 className="text-xl sm:text-2xl xl:text-3xl font-black text-white truncate">
+                    <h3 className="text-xl sm:text-2xl xl:text-3xl font-black text-[#1E1B2E] truncate">
                       {player.name}
                     </h3>
 
@@ -101,13 +98,13 @@ cursor-pointer
 
                       {player.copied ? (
 
-                        <span className="inline-flex px-3 py-1 rounded-full bg-green-500/20 border border-green-500 text-green-400 text-sm font-bold">
+                        <span className="inline-flex px-3 py-1 rounded-full bg-green-50 border border-green-500 text-green-600 text-sm font-bold">
                           ✅ تم الشحن
                         </span>
 
                       ) : (
 
-                        <span className="inline-flex px-3 py-1 rounded-full bg-orange-500/20 border border-orange-500 text-orange-400 text-sm font-bold">
+                        <span className="inline-flex px-3 py-1 rounded-full bg-orange-50 border border-orange-500 text-orange-600 text-sm font-bold">
                           ⏳ بانتظار
                         </span>
 
@@ -115,9 +112,9 @@ cursor-pointer
 
                     </div>
 
-                    <div className="mt-5 inline-flex bg-[#0b1220] border border-slate-700 rounded-2xl px-5 py-3">
+                    <div className="mt-5 inline-flex bg-[#F5F3FF] border border-gray-200 rounded-2xl px-5 py-3">
 
-                      <span className="font-mono tracking-widest text-sky-400">
+                      <span className="font-mono tracking-widest text-sky-600">
                         ID-{player.playerId}
                       </span>
 
@@ -133,7 +130,7 @@ cursor-pointer
 
                   <button
                     onClick={() => onCopyId(player)}
-                   className="w-full h-12 rounded-2xl bg-yellow-400 text-black font-bold hover:scale-[1.02] transition"
+                   className="w-full h-12 rounded-2xl bg-[#7C3AED] text-white font-bold hover:scale-[1.02] transition"
                   >
                     📋 نسخ الـ ID
                   </button>
@@ -142,7 +139,7 @@ cursor-pointer
 
                     <button
                       onClick={() => onToggleCopied(player)}
-                      className="w-full h-12 rounded-2xl bg-green-700 hover:bg-green-600 font-bold transition"
+                      className="w-full h-12 rounded-2xl bg-green-600 hover:bg-green-700 text-white font-bold transition"
                     >
                       ↩️ إلغاء الشحن
                     </button>
@@ -151,7 +148,7 @@ cursor-pointer
 
                   <button
                     onClick={() => onDelete(player.id)}
-                    className="w-full h-12 rounded-2xl bg-red-600 hover:bg-red-700 font-bold transition"
+                    className="w-full h-12 rounded-2xl bg-red-600 hover:bg-red-700 text-white font-bold transition"
                   >
                     🗑 حذف
                   </button>

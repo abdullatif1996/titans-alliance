@@ -10,7 +10,7 @@ export default function Toast({ open, text }: ToastProps) {
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
-      <div className="bg-red-600 text-white px-6 py-4 rounded-2xl shadow-2xl border border-red-300">
+      <div className="bg-white text-red-600 px-6 py-4 rounded-2xl shadow-xl border border-red-200 font-bold">
         {text}
       </div>
     </div>

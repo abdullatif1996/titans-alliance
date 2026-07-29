@@ -26,15 +26,15 @@ export default function SearchBar({
           w-full
           h-14
           rounded-2xl
-          bg-[#0b1220]
+          bg-white
           border
-          border-slate-700
+          border-gray-300
           pl-14
           pr-5
-          text-white
-          placeholder:text-slate-500
+          text-[#1E1B2E]
+          placeholder:text-gray-400
           outline-none
-          focus:border-yellow-400
+          focus:border-[#7C3AED]
           transition
           "
         />
@@ -45,7 +45,7 @@ export default function SearchBar({
 
         <div className="flex items-center justify-between">
 
-          <p className="text-sm text-yellow-400 truncate">
+          <p className="text-sm text-[#7C3AED] truncate">
             البحث:
             <span className="font-bold ml-2">
               {search}

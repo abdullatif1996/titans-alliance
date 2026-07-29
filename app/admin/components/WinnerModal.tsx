@@ -24,19 +24,19 @@ export default function WinnerModal({
 
     <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50 p-5">
 
-      <div className="w-full max-w-lg rounded-[34px] border border-yellow-400/20 bg-gradient-to-b from-[#182235] to-[#101827] shadow-2xl overflow-hidden">
+      <div className="w-full max-w-lg rounded-[34px] border border-gray-200 bg-white shadow-2xl overflow-hidden">
 
-        <div className="p-8 text-center border-b border-slate-800">
+        <div className="p-8 text-center border-b border-gray-200">
 
           <div className="text-8xl mb-4 animate-bounce">
             🏆
           </div>
 
-          <h2 className="text-4xl font-black text-yellow-400">
+          <h2 className="text-4xl font-black text-[#7C3AED]">
             تم اختيار الفائز
           </h2>
 
-          <p className="text-gray-400 mt-3">
+          <p className="text-gray-500 mt-3">
             مبروك 🎉
           </p>
 
@@ -44,23 +44,23 @@ export default function WinnerModal({
 
         <div className="p-8">
 
-          <div className="rounded-3xl bg-[#0b1220] border border-slate-700 p-6">
+          <div className="rounded-3xl bg-[#F5F3FF] border border-gray-200 p-6">
 
-            <p className="text-slate-500 text-sm">
+            <p className="text-gray-500 text-sm">
               اسم اللاعب
             </p>
 
-            <h3 className="text-3xl font-black mt-2">
+            <h3 className="text-3xl font-black text-[#1E1B2E] mt-2">
               {winner?.name}
             </h3>
 
-            <div className="h-px bg-slate-700 my-6"></div>
+            <div className="h-px bg-gray-200 my-6"></div>
 
-            <p className="text-slate-500 text-sm">
+            <p className="text-gray-500 text-sm">
               Player ID
             </p>
 
-            <h3 className="text-2xl font-mono text-sky-400 mt-2">
+            <h3 className="text-2xl font-mono text-sky-600 mt-2">
               {winner?.playerId}
             </h3>
 
@@ -70,14 +70,14 @@ export default function WinnerModal({
 
             <button
               onClick={copyWinner}
-              className="h-14 rounded-2xl bg-yellow-400 text-black font-black hover:scale-105 transition"
+              className="h-14 rounded-2xl bg-[#7C3AED] text-white font-black hover:scale-105 transition"
             >
               📋 نسخ
             </button>
 
             <button
               onClick={onClose}
-              className="h-14 rounded-2xl bg-red-600 hover:bg-red-700 font-black transition"
+              className="h-14 rounded-2xl bg-red-600 hover:bg-red-700 text-white font-black transition"
             >
               إغلاق
             </button>

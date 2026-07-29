@@ -81,11 +81,11 @@ export default function DeletedPage() {
 }
 
   return (
-    <main className="min-h-screen bg-[#0B1120] text-white p-8">
+    <main className="min-h-screen bg-[#FAFAFA] text-[#1E1B2E] p-8">
 
       <div className="flex items-center justify-between mb-8">
 
-        <h1 className="text-4xl font-black text-yellow-400">
+        <h1 className="text-4xl font-black text-[#7C3AED]">
           🗑️ المحذوفات
         </h1>
 
@@ -93,14 +93,14 @@ export default function DeletedPage() {
 
           <button
             onClick={deleteAllPlayers}
-            className="bg-red-700 hover:bg-red-800 px-5 py-3 rounded-xl font-bold"
+            className="bg-red-600 hover:bg-red-700 text-white px-5 py-3 rounded-xl font-bold"
           >
             🗑️ حذف جميع المحذوفات
           </button>
 
           <Link
             href="/admin"
-            className="bg-blue-600 hover:bg-blue-700 px-5 py-3 rounded-xl font-bold"
+            className="bg-[#7C3AED] hover:bg-[#6D28D9] text-white px-5 py-3 rounded-xl font-bold"
           >
             🏠 الرجوع للإدارة
           </Link>
@@ -121,7 +121,7 @@ export default function DeletedPage() {
 
             <div
               key={player.id}
-              className="bg-[#111827] border border-slate-700 rounded-2xl p-5 flex items-center justify-between"
+              className="bg-white border border-gray-200 rounded-2xl p-5 flex items-center justify-between shadow-lg"
             >
 
               <div className="flex items-center gap-4">
@@ -131,12 +131,12 @@ export default function DeletedPage() {
                   <img
                     src={player.imageUrl}
                     alt={player.name}
-                    className="w-20 h-20 rounded-xl object-cover border border-yellow-400"
+                    className="w-20 h-20 rounded-xl object-cover border border-[#7C3AED]"
                   />
 
                 ) : (
 
-                  <div className="w-20 h-20 rounded-xl bg-slate-800 flex items-center justify-center">
+                  <div className="w-20 h-20 rounded-xl bg-[#F5F3FF] flex items-center justify-center">
                     📷
                   </div>
 
@@ -144,11 +144,11 @@ export default function DeletedPage() {
 
                 <div>
 
-                  <h2 className="text-xl font-bold">
+                  <h2 className="text-xl font-bold text-[#1E1B2E]">
                     {player.name}
                   </h2>
 
-                  <p className="text-gray-400">
+                  <p className="text-gray-500">
                     ID : {player.playerId}
                   </p>
 
