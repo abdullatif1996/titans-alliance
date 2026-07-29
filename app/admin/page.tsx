@@ -11,7 +11,30 @@ import {
   updateDoc,
   getDoc,
   setDoc,
+  Timestamp,
 } from "firebase/firestore";
+
+function toRiyadhInputValue(date: Date): string {
+  const fmt = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Riyadh",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+
+  const parts = fmt.formatToParts(date);
+  const map: Record<string, string> = {};
+  parts.forEach((p) => (map[p.type] = p.value));
+
+  return `${map.year}-${map.month}-${map.day}T${map.hour}:${map.minute}`;
+}
+
+function fromRiyadhInputValue(value: string): Date {
+  return new Date(`${value}:00+03:00`);
+}
 
 import Header from "./components/header";
 import StatsCards from "./components/statsCards";
@@ -31,6 +54,7 @@ export default function AdminPage() {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("all");
   const [registrationOpen, setRegistrationOpen] = useState(true);
+  const [deadlineInput, setDeadlineInput] = useState("");
 
   const [winnerOpen, setWinnerOpen] = useState(false);
   const [winner, setWinner] = useState<any>(null);
@@ -140,9 +164,14 @@ async function loadRegistrationStatus() {
   );
 
   if (snap.exists()) {
-    setRegistrationOpen(
-      snap.data().registrationOpen
-    );
+    const data = snap.data();
+
+    setRegistrationOpen(data.registrationOpen);
+
+    const deadlineField = data.deadline as Timestamp | undefined;
+    if (deadlineField) {
+      setDeadlineInput(toRiyadhInputValue(deadlineField.toDate()));
+    }
   } else {
     await setDoc(
       doc(db, "settings", "contest"),
@@ -161,10 +190,31 @@ async function toggleRegistration() {
     doc(db, "settings", "contest"),
     {
       registrationOpen: !registrationOpen,
-    }
+    },
+    { merge: true }
   );
 
   setRegistrationOpen(!registrationOpen);
+}
+
+async function saveDeadline() {
+
+  if (!deadlineInput) {
+    showToast("⚠️ حدد موعدًا أولاً");
+    return;
+  }
+
+  const deadlineDate = fromRiyadhInputValue(deadlineInput);
+
+  await setDoc(
+    doc(db, "settings", "contest"),
+    {
+      deadline: Timestamp.fromDate(deadlineDate),
+    },
+    { merge: true }
+  );
+
+  showToast("✅ تم حفظ موعد انتهاء التسجيل");
 }
 
   function pickWinner() {
@@ -418,6 +468,28 @@ async function copyNames() {
   </button>
 
 </div>
+  </div>
+
+  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 bg-[#1b2433] rounded-2xl p-4">
+
+    <label className="text-sm text-gray-400 font-bold sm:ml-2 whitespace-nowrap">
+      ⏰ موعد انتهاء التسجيل (بتوقيت الرياض)
+    </label>
+
+    <input
+      type="datetime-local"
+      value={deadlineInput}
+      onChange={(e) => setDeadlineInput(e.target.value)}
+      className="flex-1 bg-[#0b1220] border border-slate-700 rounded-xl p-3 text-white outline-none focus:border-yellow-400"
+    />
+
+    <button
+      onClick={saveDeadline}
+      className="bg-yellow-400 hover:bg-yellow-500 text-black h-11 rounded-xl font-bold transition px-5 whitespace-nowrap"
+    >
+      💾 حفظ الموعد
+    </button>
+
   </div>
 
 </div>
