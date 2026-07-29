@@ -22,6 +22,9 @@ import SiteFooter from "./components/SiteFooter";
 import Loading from "./components/Loading";
 import SuccessModal from "./components/SuccessModal";
 import Toast from "./components/Toast";
+import LogoBadge from "./components/LogoBadge";
+import Reveal from "./components/Reveal";
+import StickyRegisterButton from "./components/StickyRegisterButton";
 
 export default function Home() {
   const [registrationOpenManual, setRegistrationOpenManual] = useState(true);
@@ -119,35 +122,46 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-[#FAFAFA]">
+    <main className="min-h-screen bg-bg">
+      <LogoBadge />
       <Hero />
 
       <section id="contest">
-        <PrizeBanner />
+        <Reveal>
+          <PrizeBanner />
+        </Reveal>
 
-        <div className="max-w-6xl mx-auto px-4 py-14 grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 lg:order-2">
+        <div
+          id="register-form"
+          className="max-w-6xl mx-auto px-4 py-14 grid grid-cols-1 lg:grid-cols-3 gap-8"
+        >
+          <Reveal className="lg:col-span-2 lg:order-2">
             <RegisterForm
               onSubmit={handleSubmit}
               onError={showToast}
               loading={loading}
               disabled={!isRegistrationOpen}
             />
-          </div>
+          </Reveal>
 
-          <div className="lg:order-1">
+          <Reveal className="lg:order-1">
             <Sidebar
               deadline={deadline}
               registrationOpenManual={registrationOpenManual}
               participantsCount={participantsCount}
               onStatusChange={setIsRegistrationOpen}
             />
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      <RulesSection />
+      <Reveal>
+        <RulesSection />
+      </Reveal>
+
       <SiteFooter />
+
+      <StickyRegisterButton />
 
       {loading && <Loading />}
 

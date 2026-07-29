@@ -22,7 +22,7 @@ export default function DeleteAllModal({
 
       <div className="w-full max-w-lg rounded-[34px] border border-red-200 bg-white shadow-2xl overflow-hidden">
 
-        <div className="p-8 text-center border-b border-gray-200">
+        <div className="p-8 text-center border-b border-line">
 
           <div className="text-8xl mb-4">
             ⚠️
@@ -32,7 +32,7 @@ export default function DeleteAllModal({
             حذف جميع المشاركين
           </h2>
 
-          <p className="text-gray-500 mt-4">
+          <p className="text-ink-soft mt-4">
             سيتم حذف جميع المشاركين نهائياً
           </p>
 
@@ -40,13 +40,13 @@ export default function DeleteAllModal({
 
         <div className="p-8">
 
-          <div className="rounded-3xl bg-[#F5F3FF] border border-gray-200 p-6 text-center">
+          <div className="rounded-3xl bg-violet-mist border border-line p-6 text-center">
 
-            <p className="text-gray-500">
+            <p className="text-ink-soft">
               عدد المشاركين
             </p>
 
-            <h2 className="text-6xl font-black text-[#7C3AED] mt-3">
+            <h2 className="text-6xl font-black text-violet mt-3">
               {count}
             </h2>
 
@@ -56,7 +56,7 @@ export default function DeleteAllModal({
 
             <button
               onClick={onCancel}
-              className="h-14 rounded-2xl bg-gray-200 hover:bg-gray-300 text-[#1E1B2E] font-black transition"
+              className="h-14 rounded-2xl bg-line hover:bg-gray-300 text-ink font-black transition"
             >
               إلغاء
             </button>

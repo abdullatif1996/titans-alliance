@@ -24,19 +24,19 @@ export default function WinnerModal({
 
     <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50 p-5">
 
-      <div className="w-full max-w-lg rounded-[34px] border border-gray-200 bg-white shadow-2xl overflow-hidden">
+      <div className="w-full max-w-lg rounded-[34px] border border-line bg-white shadow-2xl overflow-hidden">
 
-        <div className="p-8 text-center border-b border-gray-200">
+        <div className="p-8 text-center border-b border-line">
 
           <div className="text-8xl mb-4 animate-bounce">
             🏆
           </div>
 
-          <h2 className="text-4xl font-black text-[#7C3AED]">
+          <h2 className="text-4xl font-black text-violet">
             تم اختيار الفائز
           </h2>
 
-          <p className="text-gray-500 mt-3">
+          <p className="text-ink-soft mt-3">
             مبروك 🎉
           </p>
 
@@ -44,19 +44,19 @@ export default function WinnerModal({
 
         <div className="p-8">
 
-          <div className="rounded-3xl bg-[#F5F3FF] border border-gray-200 p-6">
+          <div className="rounded-3xl bg-violet-mist border border-line p-6">
 
-            <p className="text-gray-500 text-sm">
+            <p className="text-ink-soft text-sm">
               اسم اللاعب
             </p>
 
-            <h3 className="text-3xl font-black text-[#1E1B2E] mt-2">
+            <h3 className="text-3xl font-black text-ink mt-2">
               {winner?.name}
             </h3>
 
-            <div className="h-px bg-gray-200 my-6"></div>
+            <div className="h-px bg-line my-6"></div>
 
-            <p className="text-gray-500 text-sm">
+            <p className="text-ink-soft text-sm">
               Player ID
             </p>
 
@@ -70,7 +70,7 @@ export default function WinnerModal({
 
             <button
               onClick={copyWinner}
-              className="h-14 rounded-2xl bg-[#7C3AED] text-white font-black hover:scale-105 transition"
+              className="h-14 rounded-2xl bg-violet text-white font-black hover:scale-105 transition"
             >
               📋 نسخ
             </button>

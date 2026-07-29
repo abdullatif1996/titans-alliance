@@ -28,13 +28,13 @@ export default function SearchBar({
           rounded-2xl
           bg-white
           border
-          border-gray-300
+          border-line
           pl-14
           pr-5
-          text-[#1E1B2E]
-          placeholder:text-gray-400
+          text-ink
+          placeholder:text-ink-soft
           outline-none
-          focus:border-[#7C3AED]
+          focus:border-violet
           transition
           "
         />
@@ -45,7 +45,7 @@ export default function SearchBar({
 
         <div className="flex items-center justify-between">
 
-          <p className="text-sm text-[#7C3AED] truncate">
+          <p className="text-sm text-violet truncate">
             البحث:
             <span className="font-bold ml-2">
               {search}

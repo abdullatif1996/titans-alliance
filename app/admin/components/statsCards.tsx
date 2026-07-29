@@ -53,11 +53,11 @@ export default function StatsCards({
           className="
           rounded-3xl
           border
-          border-gray-200
+          border-line
           bg-white
           p-6
           shadow-lg
-          hover:border-[#7C3AED]
+          hover:border-violet
           hover:-translate-y-1
           transition
           duration-300
@@ -68,16 +68,16 @@ export default function StatsCards({
 
             <div>
 
-              <p className="text-gray-500 text-sm">
+              <p className="text-ink-soft text-sm">
                 {card.title}
               </p>
 
-              <h2 className="mt-4 text-4xl md:text-5xl font-black text-[#1E1B2E] break-all">
+              <h2 className="mt-4 text-4xl md:text-5xl font-black text-ink break-all">
                 {card.value}
               </h2>
 
               {card.sub && (
-                <p className="mt-2 text-xs text-gray-500">
+                <p className="mt-2 text-xs text-ink-soft">
                   {card.sub}
                 </p>
               )}
@@ -89,9 +89,9 @@ export default function StatsCards({
               w-16
               h-16
               rounded-2xl
-              bg-[#F5F3FF]
+              bg-violet-mist
               border
-              border-gray-200
+              border-line
               flex
               items-center
               justify-center

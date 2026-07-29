@@ -10,13 +10,13 @@ export default function SearchBar({
   setSearch,
 }: SearchBarProps) {
   return (
-    <div className="bg-white border border-gray-200 rounded-3xl p-6 mb-8 shadow-lg">
+    <div className="bg-white border border-line rounded-3xl p-6 mb-8 shadow-lg">
 
       <div className="flex flex-col md:flex-row gap-4">
 
         <div className="relative flex-1">
 
-          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl">
+          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-ink-soft text-xl">
             🔍
           </span>
 
@@ -25,7 +25,7 @@ export default function SearchBar({
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="ابحث باسم اللاعب أو ID..."
-            className="w-full bg-white border border-gray-300 rounded-2xl py-4 pl-12 pr-4 text-[#1E1B2E] placeholder:text-gray-400 focus:outline-none focus:border-[#7C3AED] transition"
+            className="w-full bg-white border border-line rounded-2xl py-4 pl-12 pr-4 text-ink placeholder:text-ink-soft focus:outline-none focus:border-violet transition"
           />
 
         </div>
@@ -40,7 +40,7 @@ export default function SearchBar({
       </div>
 
       {search && (
-        <p className="text-[#7C3AED] text-sm mt-4">
+        <p className="text-violet text-sm mt-4">
           البحث الحالي: <span className="font-bold">{search}</span>
         </p>
       )}

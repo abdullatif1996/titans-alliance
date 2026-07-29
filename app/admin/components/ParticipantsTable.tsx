@@ -14,17 +14,17 @@ export default function ParticipantsTable({
   onToggleCopied,
 }: ParticipantsTableProps) {
   return (
-    <div className="bg-white rounded-[32px] border border-gray-200 shadow-xl overflow-hidden">
+    <div className="bg-white rounded-[32px] border border-line shadow-xl overflow-hidden">
 
       {/* Header */}
 
-      <div className="px-8 py-7 border-b border-gray-200">
+      <div className="px-8 py-7 border-b border-line">
 
-        <h2 className="text-3xl font-black text-[#1E1B2E]">
+        <h2 className="text-3xl font-black text-ink">
           👥 قائمة المشاركين
         </h2>
 
-        <p className="text-gray-500 mt-2">
+        <p className="text-ink-soft mt-2">
           إجمالي المشاركين: {participants.length}
         </p>
 
@@ -34,7 +34,7 @@ export default function ParticipantsTable({
 
         {participants.length === 0 ? (
 
-          <div className="text-center py-24 text-gray-400 text-lg">
+          <div className="text-center py-24 text-ink-soft text-lg">
             لا يوجد مشاركون
           </div>
 
@@ -48,10 +48,10 @@ export default function ParticipantsTable({
 group
 rounded-[28px]
               border
-              border-gray-200
+              border-line
               bg-white
               p-6
-              hover:border-[#7C3AED] hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(124,58,237,.1)]
+              hover:border-violet hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(124,58,237,.1)]
               transition
               duration-300
               "
@@ -78,7 +78,7 @@ sm:h-24
 rounded-3xl
 object-cover
 border-2
-border-[#7C3AED]
+border-violet
 shadow-xl
 mx-auto
 group-hover:scale-105
@@ -90,7 +90,7 @@ cursor-pointer
 </a>
                   <div className="flex-1 min-w-0 text-center sm:text-right">
 
-                    <h3 className="text-xl sm:text-2xl xl:text-3xl font-black text-[#1E1B2E] truncate">
+                    <h3 className="text-xl sm:text-2xl xl:text-3xl font-black text-ink truncate">
                       {player.name}
                     </h3>
 
@@ -112,7 +112,7 @@ cursor-pointer
 
                     </div>
 
-                    <div className="mt-5 inline-flex bg-[#F5F3FF] border border-gray-200 rounded-2xl px-5 py-3">
+                    <div className="mt-5 inline-flex bg-violet-mist border border-line rounded-2xl px-5 py-3">
 
                       <span className="font-mono tracking-widest text-sky-600">
                         ID-{player.playerId}
@@ -130,7 +130,7 @@ cursor-pointer
 
                   <button
                     onClick={() => onCopyId(player)}
-                   className="w-full h-12 rounded-2xl bg-[#7C3AED] text-white font-bold hover:scale-[1.02] transition"
+                   className="w-full h-12 rounded-2xl bg-violet text-white font-bold hover:scale-[1.02] transition"
                   >
                     📋 نسخ الـ ID
                   </button>

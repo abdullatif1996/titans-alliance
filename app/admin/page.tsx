@@ -261,9 +261,9 @@ async function copyNames() {
   // 🔐 شاشة الدخول
   if (!access) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#FAFAFA] text-[#1E1B2E]">
+      <div className="min-h-screen flex items-center justify-center bg-bg text-ink">
 
-        <div className="bg-white p-8 rounded-2xl border border-gray-200 shadow-xl w-[350px]">
+        <div className="bg-white p-8 rounded-2xl border border-line shadow-xl w-[350px]">
 
           <h1 className="text-2xl font-bold mb-6 text-center">
             🔐 دخول الأدمن
@@ -274,7 +274,7 @@ async function copyNames() {
             placeholder="أدخل كلمة المرور"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-3 rounded-lg bg-white border border-gray-300 mb-4"
+            className="w-full p-3 rounded-lg bg-white border border-line mb-4"
           />
 
           <button
@@ -285,7 +285,7 @@ async function copyNames() {
                 alert("كلمة المرور خطأ ❌");
               }
             }}
-            className="w-full bg-[#7C3AED] text-white font-bold py-3 rounded-lg hover:bg-[#6D28D9]"
+            className="w-full bg-violet text-white font-bold py-3 rounded-lg hover:bg-violet-deep"
           >
             دخول
           </button>
@@ -297,12 +297,12 @@ async function copyNames() {
   }
 
   return (
-<main className="min-h-screen bg-[#FAFAFA]">
+<main className="min-h-screen bg-bg">
 
       <div className="max-w-7xl mx-auto p-6">
-<div className="bg-white border border-gray-200 rounded-3xl shadow-xl mb-8">
+<div className="bg-white border border-line rounded-3xl shadow-xl mb-8">
 
-  <div className="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-6 px-6 xl:px-8 py-6 border-b border-gray-200">
+  <div className="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-6 px-6 xl:px-8 py-6 border-b border-line">
 
     <div className="flex items-center gap-5">
 
@@ -310,7 +310,7 @@ async function copyNames() {
 
         <img
           src="/logo.jpg"
-          className="w-20 h-20 rounded-3xl border-2 border-[#7C3AED] shadow-[0_0_25px_rgba(124,58,237,.3)]"
+          className="w-20 h-20 rounded-3xl border-2 border-violet shadow-[0_0_25px_rgba(124,58,237,.3)]"
         />
 
         <span className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-green-500 border-2 border-white"></span>
@@ -319,15 +319,15 @@ async function copyNames() {
 
       <div>
 
-        <h1 className="text-5xl font-black text-[#1E1B2E]">
+        <h1 className="text-5xl font-black text-ink">
           TITANS
         </h1>
 
-        <p className="text-[#7C3AED] font-bold tracking-widest">
+        <p className="text-violet font-bold tracking-widest">
           ALLIANCE CONTROL PANEL
         </p>
 
-        <p className="text-gray-500 text-sm mt-2">
+        <p className="text-ink-soft text-sm mt-2">
           إدارة المشاركين والسحب
         </p>
 
@@ -337,21 +337,21 @@ async function copyNames() {
 
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full xl:w-auto xl:flex xl:items-center">
 
-  <div className="flex-1 xl:flex-none bg-[#F5F3FF] rounded-2xl px-5 py-3 min-w-[120px]">
+  <div className="flex-1 xl:flex-none bg-violet-mist rounded-2xl px-5 py-3 min-w-[120px]">
 
-    <p className="text-xs text-gray-500">
+    <p className="text-xs text-ink-soft">
       المشاركون
     </p>
 
-    <h2 className="text-2xl font-black text-[#7C3AED]">
+    <h2 className="text-2xl font-black text-violet">
       {participants.length}
     </h2>
 
   </div>
 
-  <div className="bg-[#F5F3FF] rounded-2xl px-4 py-3 text-center">
+  <div className="bg-violet-mist rounded-2xl px-4 py-3 text-center">
 
-    <p className="text-xs text-gray-500">
+    <p className="text-xs text-ink-soft">
       النظام
     </p>
 
@@ -395,8 +395,8 @@ async function copyNames() {
         onClick={() => setFilter("all")}
         className={`w-full h-11 rounded-xl font-bold transition ${
           filter === "all"
-            ? "bg-[#7C3AED] text-white"
-            : "bg-[#F5F3FF] text-[#1E1B2E] hover:bg-[#EDE9FE]"
+            ? "bg-violet text-white"
+            : "bg-violet-mist text-ink hover:bg-[#EDE9FE]"
         }`}
       >
         📋 الكل
@@ -406,8 +406,8 @@ async function copyNames() {
         onClick={() => setFilter("pending")}
         className={`w-full h-11 rounded-xl font-bold transition ${
           filter === "pending"
-            ? "bg-[#7C3AED] text-white"
-            : "bg-[#F5F3FF] text-[#1E1B2E] hover:bg-[#EDE9FE]"
+            ? "bg-violet text-white"
+            : "bg-violet-mist text-ink hover:bg-[#EDE9FE]"
         }`}
       >
         ⏳ بانتظار
@@ -417,8 +417,8 @@ async function copyNames() {
         onClick={() => setFilter("copied")}
         className={`w-full h-11 rounded-xl font-bold transition ${
           filter === "copied"
-            ? "bg-[#7C3AED] text-white"
-            : "bg-[#F5F3FF] text-[#1E1B2E] hover:bg-[#EDE9FE]"
+            ? "bg-violet text-white"
+            : "bg-violet-mist text-ink hover:bg-[#EDE9FE]"
         }`}
       >
         ✅ تم الشحن
@@ -437,14 +437,14 @@ async function copyNames() {
 
   <button
     onClick={pickWinner}
-    className="bg-[#F5F3FF] text-[#1E1B2E] hover:bg-[#7C3AED] hover:text-white h-11 rounded-xl font-bold transition w-full xl:w-auto px-5"
+    className="bg-violet-mist text-ink hover:bg-violet hover:text-white h-11 rounded-xl font-bold transition w-full xl:w-auto px-5"
   >
     🎲 فائز
   </button>
 
   <a
     href="/admin/deleted"
-    className="bg-[#F5F3FF] text-[#1E1B2E] hover:bg-[#7C3AED] hover:text-white h-11 rounded-xl font-bold flex items-center justify-center transition w-full xl:w-auto px-5"
+    className="bg-violet-mist text-ink hover:bg-violet hover:text-white h-11 rounded-xl font-bold flex items-center justify-center transition w-full xl:w-auto px-5"
   >
     🗑️ المحذوفات
   </a>
@@ -462,7 +462,7 @@ async function copyNames() {
 
   <button
     onClick={loadData}
-    className="bg-[#F5F3FF] text-[#1E1B2E] hover:bg-sky-500 hover:text-white h-11 rounded-xl font-bold transition w-full xl:w-auto px-5"
+    className="bg-violet-mist text-ink hover:bg-sky-500 hover:text-white h-11 rounded-xl font-bold transition w-full xl:w-auto px-5"
   >
     🔄 تحديث
   </button>
@@ -470,9 +470,9 @@ async function copyNames() {
 </div>
   </div>
 
-  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 bg-[#F5F3FF] rounded-2xl p-4">
+  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 bg-violet-mist rounded-2xl p-4">
 
-    <label className="text-sm text-gray-500 font-bold sm:ml-2 whitespace-nowrap">
+    <label className="text-sm text-ink-soft font-bold sm:ml-2 whitespace-nowrap">
       ⏰ موعد انتهاء التسجيل (بتوقيت الرياض)
     </label>
 
@@ -480,12 +480,12 @@ async function copyNames() {
       type="datetime-local"
       value={deadlineInput}
       onChange={(e) => setDeadlineInput(e.target.value)}
-      className="flex-1 bg-white border border-gray-300 rounded-xl p-3 text-[#1E1B2E] outline-none focus:border-[#7C3AED]"
+      className="flex-1 bg-white border border-line rounded-xl p-3 text-ink outline-none focus:border-violet"
     />
 
     <button
       onClick={saveDeadline}
-      className="bg-[#7C3AED] hover:bg-[#6D28D9] text-white h-11 rounded-xl font-bold transition px-5 whitespace-nowrap"
+      className="bg-violet hover:bg-violet-deep text-white h-11 rounded-xl font-bold transition px-5 whitespace-nowrap"
     >
       💾 حفظ الموعد
     </button>

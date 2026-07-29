@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { FaHourglassHalf, FaUsers, FaCalendarAlt } from "react-icons/fa";
+import CountUp from "./CountUp";
 
 type SidebarProps = {
   deadline: Date | null;
@@ -59,9 +60,9 @@ export default function Sidebar({
 
   return (
     <div className="space-y-5">
-      <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-lg">
-        <div className="flex items-center gap-2 text-gray-500 font-bold mb-4">
-          <FaHourglassHalf className="text-[#7C3AED]" />
+      <div className="bg-white border border-line rounded-2xl p-6 shadow-lg">
+        <div className="flex items-center gap-2 text-ink-soft font-bold mb-4">
+          <FaHourglassHalf className="text-violet" />
           الوقت المتبقي للتسجيل
         </div>
 
@@ -75,45 +76,49 @@ export default function Sidebar({
             ].map((unit) => (
               <div
                 key={unit.label}
-                className="bg-[#F5F3FF] rounded-xl py-3 border border-gray-200"
+                className="bg-violet-mist rounded-xl py-3 border border-line"
               >
-                <p className="text-xl sm:text-2xl font-black text-[#7C3AED]">
+                <p className="text-xl sm:text-2xl font-black text-violet">
                   {pad(unit.value)}
                 </p>
-                <p className="text-[11px] text-gray-500">{unit.label}</p>
+                <p className="text-[11px] text-ink-soft">{unit.label}</p>
               </div>
             ))}
           </div>
         ) : (
-          <p className="text-gray-500 text-sm">لم يتم تحديد موعد الانتهاء</p>
+          <p className="text-ink-soft text-sm">لم يتم تحديد موعد الانتهاء</p>
         )}
       </div>
 
-      <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-lg">
-        <div className="flex items-center gap-2 text-gray-500 font-bold mb-3">
-          <FaUsers className="text-[#7C3AED]" />
+      <div className="bg-white border border-line rounded-2xl p-6 shadow-lg">
+        <div className="flex items-center gap-2 text-ink-soft font-bold mb-3">
+          <FaUsers className="text-violet" />
           عدد المشاركين
         </div>
-        <p className="text-4xl font-black text-[#7C3AED]">
-          {participantsCount}
+        <p className="text-4xl font-black text-violet">
+          <CountUp value={participantsCount} />
         </p>
-        <p className="text-sm text-gray-500 mt-1">لاعب سجلوا حتى الآن</p>
+        <p className="text-sm text-ink-soft mt-1">لاعب سجلوا حتى الآن</p>
       </div>
 
-      <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-lg">
-        <div className="flex items-center gap-2 text-gray-500 font-bold mb-3">
-          <FaCalendarAlt className="text-[#7C3AED]" />
+      <div className="bg-white border border-line rounded-2xl p-6 shadow-lg">
+        <div className="flex items-center gap-2 text-ink-soft font-bold mb-3">
+          <FaCalendarAlt className="text-violet" />
           موعد انتهاء التسجيل
         </div>
-        <p className="text-[#1E1B2E] font-semibold leading-7">{formattedDeadline}</p>
+        <p className="text-ink font-semibold leading-7">{formattedDeadline}</p>
       </div>
 
-      <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-lg">
-        <p className="text-gray-500 font-bold mb-3">حالة التسجيل</p>
-        <div className="flex items-center gap-2">
+      <div className="bg-white border border-line rounded-2xl p-6 shadow-lg">
+        <p className="text-ink-soft font-bold mb-3">حالة التسجيل</p>
+        <div
+          className={`inline-flex items-center gap-2 rounded-full px-4 py-2 ${
+            isOpen ? "bg-green-50 border border-green-200" : "bg-red-50 border border-red-200"
+          }`}
+        >
           <span
-            className={`w-3 h-3 rounded-full ${
-              isOpen ? "bg-green-500 animate-pulse" : "bg-red-500"
+            className={`w-2.5 h-2.5 rounded-full ${
+              isOpen ? "bg-green-500 animate-blink-dot" : "bg-red-500"
             }`}
           />
           <span
