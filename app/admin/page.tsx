@@ -209,8 +209,8 @@ export default function AdminPage() {
 
   async function copyNames() {
     const text = filtered
-      .map((player, index) => `${index + 1}- ${player.name}`)
-      .join("\n");
+      .map((player, index) => `${index + 1}- ${player.name}\n${player.playerId}\n———-`)
+      .join("\n\n");
 
     await navigator.clipboard.writeText(text);
 
