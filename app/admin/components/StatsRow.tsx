@@ -19,11 +19,11 @@ export default function StatsRow({
   activeFilter,
   onSelect,
 }: StatsRowProps) {
-  const stats: { key: StatusFilter; label: string; icon: string; value: number }[] = [
-    { key: "all", label: "إجمالي المشاركين", icon: "👥", value: total },
-    { key: "pending", label: "قيد المراجعة", icon: "⏳", value: pending },
-    { key: "shipped", label: "تم الشحن", icon: "✅", value: shipped },
-    { key: "winner", label: "الفائزون", icon: "🏆", value: winners },
+  const stats: { key: StatusFilter; label: string; value: number }[] = [
+    { key: "all", label: "إجمالي المشاركين", value: total },
+    { key: "pending", label: "قيد المراجعة", value: pending },
+    { key: "shipped", label: "تم الشحن", value: shipped },
+    { key: "winner", label: "الفائزون", value: winners },
   ];
 
   return (
@@ -41,7 +41,6 @@ export default function StatsRow({
                 : "bg-white border-line hover:border-violet/50 shadow-sm"
             }`}
           >
-            <span className="text-2xl">{s.icon}</span>
             <p className={`text-3xl font-black mt-3 ${active ? "text-white" : "text-ink"}`}>
               {s.value}
             </p>

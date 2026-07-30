@@ -21,9 +21,9 @@ const badgeStyles: Record<string, string> = {
 };
 
 const badgeLabels: Record<string, string> = {
-  winner: "🏆 فائز",
-  shipped: "✅ تم الشحن",
-  pending: "⏳ قيد المراجعة",
+  winner: "فائز",
+  shipped: "تم الشحن ✅",
+  pending: "قيد المراجعة",
 };
 
 export default function ParticipantsGrid({
@@ -86,7 +86,7 @@ export default function ParticipantsGrid({
                     onClick={() => onCopyId(player)}
                     className="h-9 rounded-lg bg-violet text-white text-sm font-bold hover:bg-violet-deep transition"
                   >
-                    📋 نسخ الـ ID
+                    نسخ الـ ID
                   </button>
 
                   <button
@@ -97,14 +97,14 @@ export default function ParticipantsGrid({
                         : "bg-violet-mist border-transparent text-ink hover:bg-violet hover:text-white"
                     }`}
                   >
-                    {player.copied ? "↩️ إلغاء الشحن" : "✅ تحديد كمشحون"}
+                    {player.copied ? "إلغاء الشحن" : "تحديد كمشحون"}
                   </button>
 
                   <button
                     onClick={() => onDelete(player.id)}
                     className="h-9 rounded-lg bg-red/10 border border-red text-red text-sm font-bold hover:bg-red hover:text-white transition"
                   >
-                    🗑 حذف
+                    حذف
                   </button>
                 </div>
               </div>

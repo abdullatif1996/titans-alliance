@@ -79,7 +79,7 @@ export default function ControlsBar({
               onClick={onSaveDeadline}
               className="hover-lift flex-1 h-10 rounded-xl bg-violet hover:bg-violet-deep text-white font-bold text-sm transition"
             >
-              💾 حفظ الموعد
+              حفظ الموعد
             </button>
             <button
               onClick={onToggleRegistration}
@@ -89,7 +89,7 @@ export default function ControlsBar({
                   : "bg-red/10 border-red text-red"
               }`}
             >
-              {registrationOpen ? "🟢 مفتوح" : "🔴 مغلق"}
+              {registrationOpen ? "مفتوح" : "مغلق 🔴"}
             </button>
           </div>
         </div>
@@ -100,35 +100,35 @@ export default function ControlsBar({
           onClick={onCopyNames}
           className="hover-lift h-11 px-5 rounded-xl bg-violet-mist text-ink hover:bg-violet hover:text-white font-bold transition"
         >
-          📋 نسخ الأسماء
+          نسخ الأسماء
         </button>
 
         <button
           onClick={onRefresh}
           className="hover-lift h-11 px-5 rounded-xl bg-violet-mist text-ink hover:bg-violet hover:text-white font-bold transition"
         >
-          🔄 تحديث
+          تحديث
         </button>
 
         <a
           href="/admin/deleted"
           className="hover-lift h-11 px-5 rounded-xl bg-violet-mist text-ink hover:bg-violet hover:text-white font-bold transition flex items-center"
         >
-          🗑️ المحذوفات
+          المحذوفات
         </a>
 
         <a
           href="/admin/settings"
           className="hover-lift h-11 px-5 rounded-xl bg-violet-mist text-ink hover:bg-violet hover:text-white font-bold transition flex items-center"
         >
-          ⚙️ إعدادات المسابقة
+          إعدادات المسابقة
         </a>
 
         <button
           onClick={onDeleteAllClick}
           className="hover-lift h-11 px-5 rounded-xl bg-red/10 border border-red text-red hover:bg-red hover:text-white font-bold transition"
         >
-          ⚠️ حذف الجميع
+          حذف الجميع
         </button>
       </div>
     </div>

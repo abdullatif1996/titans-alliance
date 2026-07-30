@@ -305,7 +305,7 @@ export default function AdminPage() {
             }}
             className="hover-lift h-11 px-5 rounded-xl bg-violet-mist text-ink hover:bg-violet hover:text-white font-bold transition"
           >
-            🚪 خروج
+            خروج
           </button>
 
         </div>
@@ -346,7 +346,7 @@ export default function AdminPage() {
           onClick={pickWinner}
           className="hover-lift fixed bottom-6 left-6 z-40 h-14 px-6 rounded-2xl bg-gold text-white font-black shadow-xl hover:opacity-90 transition"
         >
-          🎲 اختيار فائز
+          اختيار فائز
         </button>
 
         <WinnerModal

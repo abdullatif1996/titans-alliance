@@ -80,7 +80,7 @@ export default function WinnerModal({
               onClick={copyWinner}
               className="h-14 rounded-2xl bg-violet-mist text-ink font-black hover:bg-violet hover:text-white transition"
             >
-              📋 نسخ
+              نسخ
             </button>
 
             <button
@@ -88,7 +88,7 @@ export default function WinnerModal({
               disabled={winner?.winner}
               className="h-14 rounded-2xl bg-gold text-white font-black hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              🏆 تعيين كفائز
+              تعيين كفائز
             </button>
 
           </div>
